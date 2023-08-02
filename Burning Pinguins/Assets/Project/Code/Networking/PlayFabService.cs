@@ -4,25 +4,20 @@ using UnityEngine;
 
 public class PlayFabService : MonoBehaviour
 {
-    private JsonData<string> _jsonData;
+    private PlayerAccountData _accountData = new();
     private string _playerDataPath = Application.dataPath + "/PlayerData";
 
     private string _username;
     private string _email;
     private string _password;
 
-    public string Username { get => _username; set => _username = value; }
-    public string Email { get => _email; set => _email = value; }
-    public string Password { get => _password; set => _password = value; }
+    public string Username { get => _accountData.accountName; set => _accountData.accountName = value; }
+    public string Email { get => _accountData.accountEmail; set => _accountData.accountEmail = value; }
+    public string Password { get => _accountData.accountPassword; set => _password = value; }
 
     public void CreatePlayFabAccount()
     {
-        _jsonData.Load(_playerDataPath);
-        if (_jsonData == null)
-        {
-
-            ConnectViaPlayFab();
-        }
+        
 
         PlayFabClientAPI.RegisterPlayFabUser(new RegisterPlayFabUserRequest
         {
