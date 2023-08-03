@@ -7,7 +7,7 @@ public class PhotonService : MonoBehaviourPunCallbacks
     private const string MAP_KEY = "C0";
     private const string RATING_KEY = "C1";
 
-    private void Start()
+    public override void OnEnable()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = PhotonNetwork.AppVersion;

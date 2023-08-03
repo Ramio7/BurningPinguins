@@ -10,6 +10,11 @@ public class PlayFabService : MonoBehaviour
     public string Email { get => _accountData.accountEmail; private set => _accountData.accountEmail = value; }
     public string Password { get => _accountData.accountPassword; private set => _accountData.accountPassword = value; }
 
+    private void OnEnable()
+    {
+        
+    }
+
     public void CreatePlayFabAccount(string username, string email, string password)
     {
         PlayFabClientAPI.RegisterPlayFabUser(new()
