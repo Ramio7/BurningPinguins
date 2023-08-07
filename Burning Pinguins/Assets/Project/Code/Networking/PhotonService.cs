@@ -18,9 +18,14 @@ public class PhotonService : MonoBehaviourPunCallbacks
     public void ConnectLobby(PlayerAccountData accountData)
     {
         PhotonNetwork.AuthValues = new();
-        PhotonNetwork.NickName = accountData.accountName;
+        PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.JoinLobby(_lobby);
         GetRoomList();
+    }
+
+    public void JoinGame()
+    {
+        PhotonNetwork.JoinRandomOrCreateRoom();
     }
 
     private void GetRoomList()

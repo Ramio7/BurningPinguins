@@ -1,6 +1,7 @@
 public struct PlayerAccountData
 {
-    public string accountName;
-    public string accountEmail;
-    public string accountPassword;
+    public string AccountName;
+    public string AccountEmail;
+    public string AccountPassword;
+    public int Rating;
 }

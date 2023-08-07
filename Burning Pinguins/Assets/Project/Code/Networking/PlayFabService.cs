@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class PlayFabService : MonoBehaviour
 {
-    private PlayerAccountData _accountData = new();
+    private PlayerAccountData _loggedAccountData = new();
 
-    public string Username { get => _accountData.accountName; private set => _accountData.accountName = value; }
-    public string Email { get => _accountData.accountEmail; private set => _accountData.accountEmail = value; }
-    public string Password { get => _accountData.accountPassword; private set => _accountData.accountPassword = value; }
-
-    private void OnEnable()
-    {
-        
-    }
+    public string Username { get => _loggedAccountData.AccountName; private set => _loggedAccountData.AccountName = value; }
+    public string Email { get => _loggedAccountData.AccountEmail; private set => _loggedAccountData.AccountEmail = value; }
+    public string Password { get => _loggedAccountData.AccountPassword; private set => _loggedAccountData.AccountPassword = value; }
+    public PlayerAccountData LoggedAccountData { get => _loggedAccountData; private set => _loggedAccountData = value; }
 
     public void CreatePlayFabAccount(string username, string email, string password)
     {
@@ -25,9 +21,7 @@ public class PlayFabService : MonoBehaviour
             RequireBothUsernameAndEmail = true,
         }, result =>
         {
-            _accountData.accountName = username;
-            _accountData.accountEmail = email;
-            _accountData.accountPassword = password;
+            ConnectViaPlayFab(Username, Password);
         }, error =>
         {
             Debug.LogError($"Fail: {error.ErrorMessage}");
@@ -48,7 +42,9 @@ public class PlayFabService : MonoBehaviour
             request,
             result =>
             {
-
+                _loggedAccountData.AccountName = username;
+                _loggedAccountData.AccountPassword = password;
+                MainMenuEntryPoint.PhotonService.ConnectLobby(_loggedAccountData);
             },
             error =>
             {
