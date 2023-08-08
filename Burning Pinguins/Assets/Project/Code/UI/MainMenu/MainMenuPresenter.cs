@@ -8,6 +8,8 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     [SerializeField] private Button _createAccountButton;
     [SerializeField] private Button _loginAccountButton;
     [SerializeField] private Button _switchAccountButton;
+    [SerializeField] private Button _settingsButton;
+    [SerializeField] private Button _shopButton;
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _startGameButton;
 
@@ -34,6 +36,8 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _createAccountButton.onClick.AddListener(SwitchToCreateAccountWindow);
         _switchAccountButton.onClick.AddListener(SwitchToLoginAccountWindow);
         _loginAccountButton.onClick.AddListener(SwitchToLoginAccountWindow);
+        _settingsButton.onClick.AddListener(SwitchToSettingsWindow);
+        _shopButton.onClick.AddListener(SwitchToShopWindow);
         _exitButton.onClick.AddListener(Application.Quit);
     }
 
@@ -41,7 +45,9 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     {
         _createAccountButton.onClick.RemoveListener(SwitchToCreateAccountWindow);
         _switchAccountButton.onClick.RemoveListener(SwitchToLoginAccountWindow);
-        _loginAccountButton.onClick.AddListener(SwitchToLoginAccountWindow);
+        _loginAccountButton.onClick.RemoveListener(SwitchToLoginAccountWindow);
+        _settingsButton.onClick.RemoveListener(SwitchToSettingsWindow);
+        _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
     }
 
@@ -61,5 +67,17 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     {
         Canvas.enabled = false;
         LoginAccountWindowPresenter.Canvas.enabled = true;
+    }
+
+    private void SwitchToSettingsWindow()
+    {
+        Canvas.enabled = false;
+        GameSettingsPresenter.Canvas.enabled = true;
+    }
+
+    private void SwitchToShopWindow()
+    {
+        Canvas.enabled = false;
+        LobbyPresenter.Canvas.enabled = true;
     }
 }
