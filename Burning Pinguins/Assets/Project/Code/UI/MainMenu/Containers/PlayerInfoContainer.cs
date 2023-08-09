@@ -1,4 +1,3 @@
-using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
@@ -13,15 +12,11 @@ public class PlayerInfoContainer : MonoBehaviour
 
     public Player PlayerInfo { get => _playerInfo; private set => _playerInfo = value; }
 
-    public void Init(Player playerInfo, Transform uiContainer)
+    public PlayerInfoContainer Init(Player playerInfo, Transform uiContainer)
     {
         _playerInfo = playerInfo;
         _container = Instantiate(_playerInfoContainerPrefab, uiContainer);
         _container.GetComponentInChildren<TMP_Text>().text = playerInfo.ToStringFull();
-    }
-
-    private void OnDestroy()
-    {
-        
+        return this;
     }
 }

@@ -19,6 +19,11 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    public override void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
     public void ConnectLobby(PlayerAccountData accountData)
     {
         PhotonNetwork.AuthValues = new();

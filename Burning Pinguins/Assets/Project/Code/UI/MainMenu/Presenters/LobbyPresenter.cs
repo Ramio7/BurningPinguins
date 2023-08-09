@@ -8,10 +8,14 @@ public class LobbyPresenter : MonoBehaviourPunCallbacks, IUiWindow
     public override void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
+
+        PhotonNetwork.AddCallbackTarget(this);
     }
 
     public override void OnDisable()
     {
         Canvas = null;
+
+        PhotonNetwork.RemoveCallbackTarget(this);
     }
 }

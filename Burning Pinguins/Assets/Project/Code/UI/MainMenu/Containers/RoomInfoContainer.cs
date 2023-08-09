@@ -21,13 +21,7 @@ public class RoomInfoContainer : MonoBehaviour
         _container.onClick.AddListener(JoinRoom);
     }
 
-    private void OnDestroy()
-    {
-        _container.onClick.RemoveListener(JoinRoom);
-    }
+    private void OnDestroy() => _container.onClick.RemoveListener(JoinRoom);
 
-    private void JoinRoom()
-    {
-        PhotonNetwork.JoinRoom(_roomInfo.Name);
-    }
+    private void JoinRoom() => PhotonNetwork.JoinRoom(_roomInfo.Name);
 }
