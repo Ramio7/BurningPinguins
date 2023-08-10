@@ -5,11 +5,11 @@ using UnityEngine;
 public struct KeyCommandStruct
 {
     public List<KeyCode> KeyCodes;
-    public Action Command;
+    public delegate void Command();
 
-    public KeyCommandStruct(List<KeyCode> keyCodes, Action command)
-    {
-        KeyCodes = keyCodes;
-        Command = command;
-    }
+    //public KeyCommandStruct(List<KeyCode> keyCodes, )
+    //{
+    //    KeyCodes = keyCodes;
+    //    Delegate.CreateDelegate(typeof(void), command.Method);
+    //}
 }

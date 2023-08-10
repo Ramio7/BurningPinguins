@@ -1,6 +1,4 @@
 using System;
-using Unity.Jobs;
-using UnityEngine;
 
 public class Command : ICommand, IDisposable
 {
@@ -15,7 +13,6 @@ public class Command : ICommand, IDisposable
 
     public void Init()
     {
-        _activeCommand = KeyCommandStruct.Command;
         _activeCommand?.Invoke();
     }
 
