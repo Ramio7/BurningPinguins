@@ -13,15 +13,19 @@ public class RoomInfoContainer : MonoBehaviour
 
     public RoomInfo RoomInfo { get => _roomInfo; private set => _roomInfo = value; }
 
-    public void Init(RoomInfo roomInfo, Transform uiContainer)
+    public RoomInfoContainer Init(RoomInfo roomInfo, Transform uiContainer)
     {
         _roomInfo = roomInfo;
         _container = Instantiate(_roomInfoContainerPrefab, uiContainer);
         _container.GetComponentInChildren<TMP_Text>().text = roomInfo.ToStringFull();
         _container.onClick.AddListener(JoinRoom);
+        return this;
     }
 
-    private void OnDestroy() => _container.onClick.RemoveListener(JoinRoom);
+    public void OnDisable()
+    {
+        _container.onClick.RemoveListener(JoinRoom);
+    }
 
     private void JoinRoom() => PhotonNetwork.JoinRoom(_roomInfo.Name);
 }

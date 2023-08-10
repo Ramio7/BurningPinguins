@@ -1,9 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
@@ -13,7 +11,7 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 
     [SerializeField] private PlayerInfoContainer _playerInfoContainerPrefab;
 
-    [SerializeField] private Transform _playersContainer;
+    [SerializeField] private Transform _playersUiContainer;
 
     private List<PlayerInfoContainer> _players = new();
 
@@ -45,7 +43,7 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        var playerContainer = _playerInfoContainerPrefab.Init(newPlayer, _playersContainer);
+        var playerContainer = _playerInfoContainerPrefab.Init(newPlayer, _playersUiContainer);
         _players.Add(playerContainer);
     }
 
@@ -65,7 +63,5 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     {
         Canvas.enabled = false;
         MainMenuPresenter.Canvas.enabled = true;
-
-        if (SceneManager.GetActiveScene().name != "MainMenu") SceneManager.LoadScene(SceneList.MainMenu.ToString());
     }
 }

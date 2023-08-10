@@ -13,19 +13,16 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _startGameButton;
 
-    [SerializeField] private CreateAccountWindowPresenter _createAccountCanvas;
-    [SerializeField] private LoginAccountWindowPresenter _loginAccountCanvas;
-
     public static Canvas Canvas { get; private set; }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
         SubscribeButtons();
         SetSwitchableButtonsActive(PlayFabClientAPI.IsClientLoggedIn());
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         Canvas = null;
         UnsubscribeButtons();
@@ -39,6 +36,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.AddListener(SwitchToSettingsWindow);
         _shopButton.onClick.AddListener(SwitchToShopWindow);
         _exitButton.onClick.AddListener(Application.Quit);
+        _startGameButton.onClick.AddListener(MainMenuEntryPoint.PhotonService.JoinGame);
     }
 
     private void UnsubscribeButtons()
@@ -49,6 +47,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.RemoveListener(SwitchToSettingsWindow);
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
+        _startGameButton.onClick.RemoveListener(MainMenuEntryPoint.PhotonService.JoinGame);
     }
 
     private void SetSwitchableButtonsActive(bool isLoggedIn)
@@ -78,6 +77,6 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     private void SwitchToShopWindow()
     {
         Canvas.enabled = false;
-        LobbyPresenter.Canvas.enabled = true;
+        ShopPresenter.Canvas.enabled = true;
     }
 }

@@ -13,13 +13,11 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
     public event Action OnUpdateEvent;
     public event Action OnFixedUpdateEvent;
 
-    private void Update() => OnUpdateEvent?.Invoke();
-    private void FixedUpdate() => OnFixedUpdateEvent?.Invoke();
+    public void Update() => OnUpdateEvent?.Invoke();
 
-    private void Awake()
-    {
-        InstantiateStartingSceneObjects();
-    }
+    public void FixedUpdate() => OnFixedUpdateEvent?.Invoke();
+
+    public void Awake() => InstantiateStartingSceneObjects();
 
     private void InstantiateStartingSceneObjects()
     {

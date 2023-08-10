@@ -35,6 +35,7 @@ public class PhotonService : MonoBehaviourPunCallbacks
     public void JoinGame()
     {
         PhotonNetwork.JoinRandomOrCreateRoom();
+        PhotonNetwork.LoadLevel(SceneList.SimpleGameMap.ToString());
     }
 
     private void GetRoomList()
