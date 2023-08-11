@@ -1,23 +1,27 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Command : ICommand, IDisposable
 {
     public KeyCommandStruct KeyCommandStruct { get; private set; }
 
-    private Action _activeCommand;
-
-    public Command(KeyCommandStruct keyCommandStruct)
+    public Command(List<KeyCode> keys, Action method)
     {
-        KeyCommandStruct = keyCommandStruct;
+        KeyCommandStruct = new()
+        {
+            KeyCodes = keys,
+            Command = method,
+        };
     }
 
     public void Init()
     {
-        _activeCommand?.Invoke();
+        KeyCommandStruct.Command?.Invoke();
     }
 
     public void Dispose()
     {
-        _activeCommand = null;
+        KeyCommandStruct.Dispose();
     }
 }

@@ -2,14 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct KeyCommandStruct
+public struct KeyCommandStruct : IDisposable
 {
     public List<KeyCode> KeyCodes;
-    public delegate void Command();
+    public Action Command;
 
-    //public KeyCommandStruct(List<KeyCode> keyCodes, )
-    //{
-    //    KeyCodes = keyCodes;
-    //    Delegate.CreateDelegate(typeof(void), command.Method);
-    //}
+    public KeyCommandStruct(List<KeyCode> keyCodes, Action method)
+    {
+        KeyCodes = keyCodes;
+        Command = method;
+    }
+
+    public void Dispose()
+    {
+        KeyCodes = null;
+        Command = null;
+    }
 }
