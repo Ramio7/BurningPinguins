@@ -8,6 +8,8 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
     [SerializeField] private GameController _gameController;
     [SerializeField] private Transform _uiContainer;
 
+    public static GameEntryPoint Instance { get; private set; }
+
     public event Action OnUpdateEvent;
     public event Action OnFixedUpdateEvent;
 
@@ -16,6 +18,8 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
 
     public void Start()
     {
+        Instance = this;
+
         if (photonView.IsMine)
         {
             Instantiate(_playerOverviewPrefab, _uiContainer);

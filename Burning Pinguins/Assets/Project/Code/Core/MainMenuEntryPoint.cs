@@ -7,6 +7,8 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
     [SerializeField] private PhotonService _photonService;
     [SerializeField] private PlayFabService _playFabService;
 
+    public static MainMenuEntryPoint Instance { get; private set; }
+
     public static PhotonService PhotonService;
     public static PlayFabService PlayFabService;
 
@@ -21,6 +23,8 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
 
     private void InstantiateStartingSceneObjects()
     {
+        Instance = this;
+
         Instantiate(_mainMenuPresenterPrefab);
         PhotonService = Instantiate(_photonService).GetComponent<PhotonService>();
         PlayFabService = Instantiate(_playFabService).GetComponent<PlayFabService>();

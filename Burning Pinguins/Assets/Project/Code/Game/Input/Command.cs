@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Command : ICommand, IDisposable
 {
-    public KeyCommandStruct KeyCommandStruct { get; private set; }
+    public KeyCommandPair KeyCommandStruct { get; protected set; }
 
     public Command(List<KeyCode> keys, Action method)
     {
-        KeyCommandStruct = new()
-        {
-            KeyCodes = keys,
-            Command = method,
-        };
+        KeyCommandStruct = new(keys, method);
     }
 
     public void Init()

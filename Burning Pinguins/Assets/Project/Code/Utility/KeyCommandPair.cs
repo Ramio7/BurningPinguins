@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct KeyCommandStruct : IDisposable
+public class KeyCommandPair : IDisposable
 {
     public List<KeyCode> KeyCodes;
     public Action Command;
 
-    public KeyCommandStruct(List<KeyCode> keyCodes, Action method)
+    public KeyCommandPair(List<KeyCode> keyCodes, Action method)
     {
         KeyCodes = keyCodes;
         Command = method;
