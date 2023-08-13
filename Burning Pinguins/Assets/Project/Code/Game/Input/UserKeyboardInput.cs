@@ -22,7 +22,9 @@ public class UserKeyboardInput : MonoBehaviour
 
     private void OnDisable()
     {
-        
+        _moveCommand.Dispose();
+        _strafeCommand.Dispose();
+        _jumpCommand.Dispose();
     }
 
     private void Move()

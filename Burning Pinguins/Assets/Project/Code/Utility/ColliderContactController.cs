@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class ColliderContactController
 {
     private float _contactThreshold = 0.5f;

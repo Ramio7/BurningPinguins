@@ -1,6 +1,6 @@
 public interface ICommand
 {
-    public KeyCommandPair KeyCommandStruct { get; }
+    public KeyCommandPair KeyCommandPair { get; }
 
     public void Init();
 }
