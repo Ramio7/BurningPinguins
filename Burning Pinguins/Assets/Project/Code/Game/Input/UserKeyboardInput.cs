@@ -24,13 +24,14 @@ public class UserKeyboardInput : UserInput
 
     protected override void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _contactController.IsGrounded)
             _playerController.PlayerRigidbody.AddForce(_playerController.Stats.PLayerJumpForce * Time.deltaTime * _playerController.PlayerTransform.up, ForceMode.VelocityChange);
     }
 
     protected override void Throw()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && _playerController.IsWithBall) 
-            _playerController.Ball.Rigidbody.AddForce(_playerController.Stats.BallThrowForce * Time.deltaTime * _playerController.PlayerTransform.forward, ForceMode.VelocityChange);
+            _playerController.Ball.Rigidbody.
+                AddForce(_playerController.Stats.BallThrowForce * Time.deltaTime * _playerController.PlayerTransform.forward, ForceMode.VelocityChange);
     }
 }
