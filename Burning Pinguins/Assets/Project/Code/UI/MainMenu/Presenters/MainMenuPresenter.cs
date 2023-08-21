@@ -36,7 +36,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.AddListener(SwitchToSettingsWindow);
         _shopButton.onClick.AddListener(SwitchToShopWindow);
         _exitButton.onClick.AddListener(Application.Quit);
-        _startGameButton.onClick.AddListener(MainMenuEntryPoint.PhotonService.ConnectLobby);
+        _startGameButton.onClick.AddListener(PhotonService.Instance.ConnectLobby);
         _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
     }
 
@@ -48,7 +48,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.RemoveListener(SwitchToSettingsWindow);
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
-        _startGameButton.onClick.RemoveListener(MainMenuEntryPoint.PhotonService.ConnectLobby);
+        _startGameButton.onClick.RemoveListener(PhotonService.Instance.ConnectLobby);
         _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
     }
 

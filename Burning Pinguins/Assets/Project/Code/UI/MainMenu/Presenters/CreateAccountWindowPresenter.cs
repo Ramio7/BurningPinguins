@@ -25,13 +25,14 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
     {
         Canvas = null;
         _createAccountButton.onClick.RemoveListener(CreateAccount);
+        _backToMenuButton.onClick.RemoveListener(SwitchToMainMenu);
     }
 
     private void CreateAccount()
     {
-        MainMenuEntryPoint.PlayFabService.CreatePlayFabAccount(_usernameInputField.text, _emailInputField.text, _passwordInputField.text);
+        PlayFabService.Instance.CreatePlayFabAccount(_usernameInputField.text, _emailInputField.text, _passwordInputField.text);
         SwitchToMainMenu();
-        MainMenuEntryPoint.PlayFabService.ConnectViaPlayFab(_usernameInputField.text, _passwordInputField.text);
+        PlayFabService.Instance.ConnectViaPlayFab(_usernameInputField.text, _passwordInputField.text);
     }
 
     private void SwitchToMainMenu()

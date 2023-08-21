@@ -9,9 +9,6 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
 
     public static MainMenuEntryPoint Instance { get; private set; }
 
-    public static PhotonService PhotonService;
-    public static PlayFabService PlayFabService;
-
     public event Action OnUpdateEvent;
     public event Action OnFixedUpdateEvent;
 
@@ -25,8 +22,7 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
     {
         Instance = this;
 
-        Instantiate(_mainMenuPresenterPrefab);
-        PhotonService = Instantiate(_photonService).GetComponent<PhotonService>();
-        PlayFabService = Instantiate(_playFabService).GetComponent<PlayFabService>();
+        Instantiate(_mainMenuPresenterPrefab);Instantiate(_photonService).GetComponent<PhotonService>();
+        Instantiate(_playFabService).GetComponent<PlayFabService>();
     }
 }

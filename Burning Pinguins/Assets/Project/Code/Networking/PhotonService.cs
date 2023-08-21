@@ -10,9 +10,11 @@ public class PhotonService : MonoBehaviourPunCallbacks
     private const string RATING_KEY = "C1";
 
     public static Action OnRoomJoin;
+    public static PhotonService Instance { get; private set; }
 
     public override void OnEnable()
     {
+        Instance = this;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = PhotonNetwork.AppVersion;
         PhotonNetwork.AddCallbackTarget(this);
@@ -21,12 +23,13 @@ public class PhotonService : MonoBehaviourPunCallbacks
 
     public override void OnDisable()
     {
+        Instance = null;
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
     public void ConnectLobby()
     {
-        PlayerAccountData accountData = MainMenuEntryPoint.PlayFabService.LoggedAccountData;
+        PlayerAccountData accountData = PlayFabService.Instance.LoggedAccountData;
         PhotonNetwork.AuthValues = new();
         PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.JoinLobby(_lobby);

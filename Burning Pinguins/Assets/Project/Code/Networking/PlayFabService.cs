@@ -11,6 +11,18 @@ public class PlayFabService : MonoBehaviour
     public string Password { get => _loggedAccountData.AccountPassword; private set => _loggedAccountData.AccountPassword = value; }
     public PlayerAccountData LoggedAccountData { get => _loggedAccountData; private set => _loggedAccountData = value; }
 
+    public static PlayFabService Instance { get; private set; }
+
+    public void OnEnable()
+    {
+        Instance = this;
+    }
+
+    public void OnDisable()
+    {
+        Instance = null;
+    }
+
     public void CreatePlayFabAccount(string username, string email, string password)
     {
         PlayFabClientAPI.RegisterPlayFabUser(new()

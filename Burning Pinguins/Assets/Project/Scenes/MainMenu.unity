@@ -1320,6 +1320,7 @@ GameObject:
   - component: {fileID: 1152092427}
   - component: {fileID: 1152092429}
   - component: {fileID: 1152092428}
+  - component: {fileID: 1152092430}
   m_Layer: 5
   m_Name: CreateAccountScreen
   m_TagString: Untagged
@@ -1385,6 +1386,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1152092430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152092426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b1ac31cb1d52a44a6e574099d7ca56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _createAccountButton: {fileID: 0}
+  _backToMenuButton: {fileID: 0}
+  _usernameInputField: {fileID: 0}
+  _passwordInputField: {fileID: 0}
+  _emailInputField: {fileID: 0}
 --- !u!1 &1158033998
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2444,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 31
+  m_AdditionalShaderChannelsFlag: 7
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

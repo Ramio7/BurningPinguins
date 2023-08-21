@@ -29,7 +29,7 @@ public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
 
     private void LoginAccount()
     {
-        MainMenuEntryPoint.PlayFabService.ConnectViaPlayFab(_username.text, _password.text);
+        PlayFabService.Instance.ConnectViaPlayFab(_username.text, _password.text);
         SwitchToMainMenu();
     }
 
