@@ -14,14 +14,14 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
 
     public static Canvas Canvas { get; private set; }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
         _createAccountButton.onClick.AddListener(CreateAccount);
         _backToMenuButton.onClick.AddListener(SwitchToMainMenu);
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         Canvas = null;
         _createAccountButton.onClick.RemoveListener(CreateAccount);

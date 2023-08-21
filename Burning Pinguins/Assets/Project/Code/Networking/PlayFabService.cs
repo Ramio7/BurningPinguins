@@ -44,7 +44,6 @@ public class PlayFabService : MonoBehaviour
             {
                 _loggedAccountData.AccountName = username;
                 _loggedAccountData.AccountPassword = password;
-                MainMenuEntryPoint.PhotonService.ConnectLobby(_loggedAccountData);
             },
             error =>
             {

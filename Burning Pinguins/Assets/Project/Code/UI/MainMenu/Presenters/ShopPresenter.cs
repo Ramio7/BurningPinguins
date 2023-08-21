@@ -4,12 +4,12 @@ public class ShopPresenter : MonoBehaviour, IUiWindow
 {
     public static Canvas Canvas;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         Canvas = null;
     }

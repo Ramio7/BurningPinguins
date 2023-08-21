@@ -13,14 +13,14 @@ public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
 
     public static Canvas Canvas { get; private set; }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
         _switchAccountButton.onClick.AddListener(LoginAccount);
         _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         Canvas = null;
         _switchAccountButton.onClick.RemoveListener(LoginAccount);

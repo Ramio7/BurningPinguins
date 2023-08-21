@@ -24,8 +24,9 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public void ConnectLobby(PlayerAccountData accountData)
+    public void ConnectLobby()
     {
+        PlayerAccountData accountData = MainMenuEntryPoint.PlayFabService.LoggedAccountData;
         PhotonNetwork.AuthValues = new();
         PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.JoinLobby(_lobby);

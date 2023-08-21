@@ -36,7 +36,8 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.AddListener(SwitchToSettingsWindow);
         _shopButton.onClick.AddListener(SwitchToShopWindow);
         _exitButton.onClick.AddListener(Application.Quit);
-        _startGameButton.onClick.AddListener(MainMenuEntryPoint.PhotonService.JoinGame);
+        _startGameButton.onClick.AddListener(MainMenuEntryPoint.PhotonService.ConnectLobby);
+        _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
     }
 
     private void UnsubscribeButtons()
@@ -47,7 +48,8 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.RemoveListener(SwitchToSettingsWindow);
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
-        _startGameButton.onClick.RemoveListener(MainMenuEntryPoint.PhotonService.JoinGame);
+        _startGameButton.onClick.RemoveListener(MainMenuEntryPoint.PhotonService.ConnectLobby);
+        _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
     }
 
     private void SetSwitchableButtonsActive(bool isLoggedIn)
@@ -78,5 +80,11 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     {
         Canvas.enabled = false;
         ShopPresenter.Canvas.enabled = true;
+    }
+
+    private void SwitchToLobbyWindow()
+    {
+        Canvas.enabled = false;
+        LobbyPresenter.Canvas.enabled = true;
     }
 }
