@@ -5,25 +5,24 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Canvas))]
 public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
 {
-    [SerializeField] private Button _switchAccountButton;
+    [SerializeField] private Button _loginAccountButton;
     [SerializeField] private Button _backToMainMenuButton;
-
-    [SerializeField] private TMP_Text _username;
-    [SerializeField] private TMP_Text _password;
+    [SerializeField] private TMP_InputField _username;
+    [SerializeField] private TMP_InputField _password;
 
     public static Canvas Canvas { get; private set; }
 
     public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
-        _switchAccountButton.onClick.AddListener(LoginAccount);
+        _loginAccountButton.onClick.AddListener(LoginAccount);
         _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
     }
 
     public void OnDisable()
     {
         Canvas = null;
-        _switchAccountButton.onClick.RemoveListener(LoginAccount);
+        _loginAccountButton.onClick.RemoveListener(LoginAccount);
         _backToMainMenuButton.onClick.RemoveListener(SwitchToMainMenu);
     }
 

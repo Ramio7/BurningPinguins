@@ -1,4 +1,5 @@
 using PlayFab;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,6 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
 {
     [SerializeField] private Button _createAccountButton;
     [SerializeField] private Button _loginAccountButton;
-    [SerializeField] private Button _switchAccountButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _exitButton;
@@ -31,7 +31,6 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     private void SubscribeButtons()
     {
         _createAccountButton.onClick.AddListener(SwitchToCreateAccountWindow);
-        _switchAccountButton.onClick.AddListener(SwitchToLoginAccountWindow);
         _loginAccountButton.onClick.AddListener(SwitchToLoginAccountWindow);
         _settingsButton.onClick.AddListener(SwitchToSettingsWindow);
         _shopButton.onClick.AddListener(SwitchToShopWindow);
@@ -43,7 +42,6 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     private void UnsubscribeButtons()
     {
         _createAccountButton.onClick.RemoveListener(SwitchToCreateAccountWindow);
-        _switchAccountButton.onClick.RemoveListener(SwitchToLoginAccountWindow);
         _loginAccountButton.onClick.RemoveListener(SwitchToLoginAccountWindow);
         _settingsButton.onClick.RemoveListener(SwitchToSettingsWindow);
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
@@ -54,8 +52,8 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
 
     private void SetSwitchableButtonsActive(bool isLoggedIn)
     {
-        _loginAccountButton.gameObject.SetActive(!isLoggedIn);
-        _switchAccountButton.gameObject.SetActive(isLoggedIn);
+        if (isLoggedIn) _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Log in";
+        else _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Switch account";
     }
 
     private void SwitchToCreateAccountWindow()

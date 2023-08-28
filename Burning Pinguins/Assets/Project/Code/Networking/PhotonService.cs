@@ -12,9 +12,14 @@ public class PhotonService : MonoBehaviourPunCallbacks
     public static Action OnRoomJoin;
     public static PhotonService Instance { get; private set; }
 
-    public override void OnEnable()
+
+    private void Awake()
     {
         Instance = this;
+    }
+
+    public override void OnEnable()
+    {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = PhotonNetwork.AppVersion;
         PhotonNetwork.AddCallbackTarget(this);
