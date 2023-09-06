@@ -22,6 +22,8 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
         _backToMenuButton.onClick.AddListener(SwitchToMainMenu);
         _createAccountStatusBar.onClick.AddListener(SwitchToMainMenu);
         _createAccountStatusBar.onClick.AddListener(ResetFields);
+        PlayFabService.Instance.AccountCreationCallback += LoginPlayFab;
+        PlayFabService.Instance.AccountCreationCallback += ShowAccountCreationResult;
     }
 
     public void OnDisable()
@@ -32,19 +34,22 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
         _backToMenuButton.onClick.RemoveListener(SwitchToMainMenu);
         _createAccountStatusBar.onClick.RemoveListener(SwitchToMainMenu);
         _createAccountStatusBar.onClick.RemoveListener(ResetFields);
+        PlayFabService.Instance.AccountCreationCallback -= LoginPlayFab;
+        PlayFabService.Instance.AccountCreationCallback -= ShowAccountCreationResult;
     }
 
-    private void CreateAccount()
+    private void CreateAccount() => PlayFabService.Instance.CreatePlayFabAccount(_usernameInputField.text, _emailInputField.text, _passwordInputField.text);
+
+    private void LoginPlayFab(bool isAccountCreated)
     {
-        PlayFabService.Instance.CreatePlayFabAccount(_usernameInputField.text, _emailInputField.text, _passwordInputField.text);
-        PlayFabService.Instance.ConnectViaPlayFab(_usernameInputField.text, _passwordInputField.text);
-        ShowAccountCreationResult();
+        if (isAccountCreated) PlayFabService.Instance.ConnectViaPlayFab(_usernameInputField.text, _passwordInputField.text);
+        else return;
     }
 
-    private void ShowAccountCreationResult()
+    private void ShowAccountCreationResult(bool isAccountCreated)
     {
         SetFieldsOnCreationCheck(true);
-        _createAccountButton.GetComponentInChildren<TMP_Text>().text = PlayFabService.Instance.AccountCreationMessage + "\n Click here to return to main menu";
+        _createAccountStatusBar.GetComponentInChildren<TMP_Text>().text = PlayFabService.Instance.AccountCreationMessage + "\n Click here to return to main menu";
     }
 
     private void SwitchToMainMenu()

@@ -4,28 +4,36 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomInfoContainer : MonoBehaviour
+public class RoomInfoContainer : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private Button _roomInfoContainerPrefab;
-
     private RoomInfo _roomInfo;
-    private Button _container;
+    private Button _containerButton;
 
     public RoomInfo RoomInfo { get => _roomInfo; private set => _roomInfo = value; }
 
-    public RoomInfoContainer Init(RoomInfo roomInfo, Transform uiContainer)
+    public RoomInfoContainer(RoomInfo roomInfo, Transform uiContainer, Button roomInfoContainerPrefab)
     {
-        _roomInfo = roomInfo;
-        _container = Instantiate(_roomInfoContainerPrefab, uiContainer);
-        _container.GetComponentInChildren<TMP_Text>().text = roomInfo.ToStringFull();
-        _container.onClick.AddListener(JoinRoom);
-        return this;
+        InitRoomContainer(roomInfo, uiContainer, roomInfoContainerPrefab);
+        UpdateRoomInfoText();
     }
 
-    public void OnDisable()
+    public void OnDestroy()
     {
-        _container.onClick.RemoveListener(JoinRoom);
+        _containerButton.onClick.RemoveListener(JoinRoom);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer) => UpdateRoomInfoText();
+
+    public override void OnPlayerLeftRoom(Player otherPlayer) => UpdateRoomInfoText();
+
+    private void InitRoomContainer(RoomInfo roomInfo, Transform uiContainer, Button roomInfoContainerPrefab)
+    {
+        _roomInfo = roomInfo;
+        _containerButton = Instantiate(roomInfoContainerPrefab, uiContainer);
+        _containerButton.onClick.AddListener(JoinRoom);
     }
 
     private void JoinRoom() => PhotonNetwork.JoinRoom(_roomInfo.Name);
+
+    private void UpdateRoomInfoText() => _containerButton.GetComponentInChildren<TMP_Text>().text = _roomInfo.ToStringFull();
 }

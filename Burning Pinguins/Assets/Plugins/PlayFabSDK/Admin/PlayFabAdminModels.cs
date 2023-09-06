@@ -737,7 +737,8 @@ namespace PlayFab.AdminModels
         EU,
         NA,
         OC,
-        SA
+        SA,
+        Unknown
     }
 
     public enum CountryCode
@@ -990,7 +991,8 @@ namespace PlayFab.AdminModels
         EH,
         YE,
         ZM,
-        ZW
+        ZW,
+        Unknown
     }
 
     /// <summary>
@@ -1402,13 +1404,13 @@ namespace PlayFab.AdminModels
     /// <summary>
     /// Deletes all data associated with the master player account, including data from all titles the player has played, such
     /// as statistics, custom data, inventory, purchases, virtual currency balances, characters, group memberships, publisher
-    /// data, credential data, account linkages, friends list and PlayStream event history. Removes the player from all
-    /// leaderboards and player search indexes. Note, this API queues the player for deletion and returns a receipt immediately.
-    /// Record the receipt ID for future reference. It may take some time before all player data is fully deleted. Upon
-    /// completion of the deletion, an email will be sent to the notification email address configured for the title confirming
-    /// the deletion. Until the player data is fully deleted, attempts to recreate the player with the same user account in the
-    /// same title will fail with the 'AccountDeleted' error. It is highly recommended to know the impact of the deletion by
-    /// calling GetPlayedTitleList, before calling this API.
+    /// data, credential data, account linkages, friends list, PlayStream event data, and telemetry event data. Removes the
+    /// player from all leaderboards and player search indexes. Note, this API queues the player for deletion and returns a
+    /// receipt immediately. Record the receipt ID for future reference. It may take some time before all player data is fully
+    /// deleted. Upon completion of the deletion, an email will be sent to the notification email address configured for the
+    /// title confirming the deletion. Until the player data is fully deleted, attempts to recreate the player with the same
+    /// user account in the same title will fail with the 'AccountDeleted' error. It is highly recommended to know the impact of
+    /// the deletion by calling GetPlayedTitleList, before calling this API.
     /// </summary>
     [Serializable]
     public class DeleteMasterPlayerAccountRequest : PlayFabRequestCommon
@@ -1435,6 +1437,24 @@ namespace PlayFab.AdminModels
         /// List of titles from which the player's data will be deleted.
         /// </summary>
         public List<string> TitleIds;
+    }
+
+    /// <summary>
+    /// Deletes any PlayStream or telemetry event associated with the player from PlayFab. Note, this API queues the data for
+    /// asynchronous deletion. It may take some time before the data is deleted.
+    /// </summary>
+    [Serializable]
+    public class DeleteMasterPlayerEventDataRequest : PlayFabRequestCommon
+    {
+        /// <summary>
+        /// Unique PlayFab assigned ID of the user on whom the operation will be performed.
+        /// </summary>
+        public string PlayFabId;
+    }
+
+    [Serializable]
+    public class DeleteMasterPlayerEventDataResult : PlayFabResultCommon
+    {
     }
 
     /// <summary>
@@ -1765,10 +1785,10 @@ namespace PlayFab.AdminModels
     /// <summary>
     /// Exports all data associated with the master player account, including data from all titles the player has played, such
     /// as statistics, custom data, inventory, purchases, virtual currency balances, characters, group memberships, publisher
-    /// data, credential data, account linkages, friends list and PlayStream event history. Note, this API queues the player for
-    /// export and returns a receipt immediately. Record the receipt ID for future reference. It may take some time before the
-    /// export is available for download. Upon completion of the export, an email containing the URL to download the export dump
-    /// will be sent to the notification email address configured for the title.
+    /// data, credential data, account linkages, friends list, PlayStream event data, and telemetry event data. Note, this API
+    /// queues the player for export and returns a receipt immediately. Record the receipt ID for future reference. It may take
+    /// some time before the export is available for download. Upon completion of the export, an email containing the URL to
+    /// download the export dump will be sent to the notification email address configured for the title.
     /// </summary>
     [Serializable]
     public class ExportMasterPlayerDataRequest : PlayFabRequestCommon
@@ -2421,6 +2441,7 @@ namespace PlayFab.AdminModels
         NamespaceMismatch,
         InvalidServiceConfiguration,
         InvalidNamespaceMismatch,
+        LeaderboardColumnLengthMismatch,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2593,6 +2614,11 @@ namespace PlayFab.AdminModels
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
         PartitionedEventInvalid,
         PartitionedEventCountOverLimit,
+        ManageEventNamespaceInvalid,
+        ManageEventNameInvalid,
+        ManagedEventNotFound,
+        ManageEventsInvalidRatio,
+        ManagedEventInvalid,
         PlayerCustomPropertiesPropertyNameTooLong,
         PlayerCustomPropertiesPropertyNameIsInvalid,
         PlayerCustomPropertiesStringPropertyValueTooLong,
@@ -5806,7 +5832,8 @@ namespace PlayFab.AdminModels
         FacebookInstantGames,
         OpenIdConnect,
         Apple,
-        NintendoSwitchAccount
+        NintendoSwitchAccount,
+        GooglePlayGames
     }
 
     [Serializable]
@@ -7022,6 +7049,10 @@ namespace PlayFab.AdminModels
         /// </summary>
         public UserPsnInfo PsnInfo;
         /// <summary>
+        /// Server Custom ID information, if a server custom ID has been assigned
+        /// </summary>
+        public UserServerCustomIdInfo ServerCustomIdInfo;
+        /// <summary>
         /// User Steam information, if a Steam account has been linked
         /// </summary>
         public UserSteamInfo SteamInfo;
@@ -7285,6 +7316,15 @@ namespace PlayFab.AdminModels
         /// PlayStation :tm: Network online ID
         /// </summary>
         public string PsnOnlineId;
+    }
+
+    [Serializable]
+    public class UserServerCustomIdInfo : PlayFabBaseModel
+    {
+        /// <summary>
+        /// Custom ID
+        /// </summary>
+        public string CustomId;
     }
 
     [Serializable]

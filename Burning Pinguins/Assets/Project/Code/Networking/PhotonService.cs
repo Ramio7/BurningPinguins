@@ -1,6 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PhotonService : MonoBehaviourPunCallbacks
@@ -11,7 +12,6 @@ public class PhotonService : MonoBehaviourPunCallbacks
 
     public static Action OnRoomJoin;
     public static PhotonService Instance { get; private set; }
-
 
     private void Awake()
     {
@@ -32,12 +32,13 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public void ConnectLobby()
+    public async void ConnectLobby()
     {
         PlayerAccountData accountData = PlayFabService.Instance.LoggedAccountData;
         PhotonNetwork.AuthValues = new();
         PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.JoinLobby(_lobby);
+        await Task.Run(() => WaitLobbyJoined());
         GetRoomList();
     }
 
@@ -45,12 +46,6 @@ public class PhotonService : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRandomOrCreateRoom();
         PhotonNetwork.LoadLevel(SceneList.SimpleGameMap.ToString());
-    }
-
-    private void GetRoomList()
-    {
-        var roomFilter = $"{MAP_KEY} >= 0 AND {RATING_KEY} >= 0";
-        PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -61,5 +56,17 @@ public class PhotonService : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         OnRoomJoin?.Invoke();
+    }
+
+    private void GetRoomList()
+    {
+        var roomFilter = $"{MAP_KEY} >= 0 AND {RATING_KEY} >= 0";
+        PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
+    }
+
+    private Task WaitLobbyJoined()
+    {
+        while (PhotonNetwork.NetworkClientState != ClientState.JoinedLobby) Task.Delay(1);
+        return Task.CompletedTask;
     }
 }

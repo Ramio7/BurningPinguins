@@ -1,5 +1,6 @@
 using PlayFab;
 using PlayFab.ClientModels;
+using System;
 using UnityEngine;
 
 public class PlayFabService : MonoBehaviour
@@ -10,8 +11,8 @@ public class PlayFabService : MonoBehaviour
     public string Email { get => _loggedAccountData.AccountEmail; private set => _loggedAccountData.AccountEmail = value; }
     public string Password { get => _loggedAccountData.AccountPassword; private set => _loggedAccountData.AccountPassword = value; }
     public PlayerAccountData LoggedAccountData { get => _loggedAccountData; private set => _loggedAccountData = value; }
-    public bool AccountCreated { get; set; } = false;
     public string AccountCreationMessage { get; set; }
+    public event Action<bool> AccountCreationCallback;
 
     public static PlayFabService Instance { get; private set; }
 
@@ -35,11 +36,11 @@ public class PlayFabService : MonoBehaviour
             RequireBothUsernameAndEmail = true,
         }, result =>
         {
-            AccountCreated = true;
-            AccountCreationMessage = result.ToString();
+            AccountCreationCallback.Invoke(true);
+            AccountCreationMessage = "Account created";
         }, error =>
         {
-            AccountCreated = false;
+            AccountCreationCallback.Invoke(false);
             AccountCreationMessage = error.ErrorMessage;
             Debug.LogError($"Fail: {error.ErrorMessage}");
         });
@@ -47,8 +48,6 @@ public class PlayFabService : MonoBehaviour
 
     public void ConnectViaPlayFab(string username, string password)
     {
-        if (PlayFabClientAPI.IsClientLoggedIn()) return;
-
         var request = new LoginWithPlayFabRequest
         {
             Username = username,
