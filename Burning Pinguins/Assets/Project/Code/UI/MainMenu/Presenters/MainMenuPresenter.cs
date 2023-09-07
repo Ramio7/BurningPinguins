@@ -28,7 +28,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         UnsubscribeButtons();
     }
 
-    private void SubscribeButtons()
+    public void SubscribeButtons()
     {
         _createAccountButton.onClick.AddListener(SwitchToCreateAccountWindow);
         _loginAccountButton.onClick.AddListener(SwitchToLoginAccountWindow);
@@ -39,7 +39,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
     }
 
-    private void UnsubscribeButtons()
+    public void UnsubscribeButtons()
     {
         _createAccountButton.onClick.RemoveListener(SwitchToCreateAccountWindow);
         _loginAccountButton.onClick.RemoveListener(SwitchToLoginAccountWindow);

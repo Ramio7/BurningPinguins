@@ -25,6 +25,16 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiWindow
         ClearRoomList();
     }
 
+    public void SubscribeButtons()
+    {
+        
+    }
+
+    public void UnsubscribeButtons()
+    {
+        
+    }
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         UpdateRoomListUI(roomList);

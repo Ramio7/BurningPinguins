@@ -10,12 +10,22 @@ public class ShopPresenter : MonoBehaviour, IUiWindow
     public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
-        _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
+        SubscribeButtons();
     }
 
     public void OnDisable()
     {
         Canvas = null;
+        UnsubscribeButtons();
+    }
+
+    public void SubscribeButtons()
+    {
+        _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
+    }
+
+    public void UnsubscribeButtons()
+    {
         _backToMainMenuButton.onClick.RemoveListener(SwitchToMainMenu);
     }
 

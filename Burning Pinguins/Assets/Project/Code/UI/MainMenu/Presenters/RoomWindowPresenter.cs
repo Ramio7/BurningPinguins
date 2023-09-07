@@ -24,9 +24,7 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         if (!PhotonNetwork.IsMasterClient) _startTheGameButton.interactable = false;
         else _startTheGameButton.interactable = true;
 
-        _startTheGameButton.onClick.AddListener(StartGame);
-        _leaveRoomButton.onClick.AddListener(SwitchToMainMenu);
-        _leaveRoomButton.onClick.AddListener(LeaveCurrentRoom);
+        SubscribeButtons();
 
         PhotonNetwork.AddCallbackTarget(this);
     }
@@ -35,10 +33,23 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     {
         Canvas = null;
 
-        _startTheGameButton.onClick.RemoveListener(StartGame);
-        _leaveRoomButton.onClick.RemoveListener(SwitchToMainMenu);
+        UnsubscribeButtons();
 
         PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    public void SubscribeButtons()
+    {
+        _startTheGameButton.onClick.AddListener(StartGame);
+        _leaveRoomButton.onClick.AddListener(SwitchToMainMenu);
+        _leaveRoomButton.onClick.AddListener(LeaveCurrentRoom);
+    }
+
+    public void UnsubscribeButtons()
+    {
+        _startTheGameButton.onClick.RemoveListener(StartGame);
+        _leaveRoomButton.onClick.RemoveListener(SwitchToMainMenu);
+        _leaveRoomButton.onClick.RemoveListener(LeaveCurrentRoom);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

@@ -21,14 +21,14 @@ public class LobbyPresenter : MonoBehaviour, IUiWindow
         UnsubscribeButtons();
     }
 
-    private void SubscribeButtons()
+    public void SubscribeButtons()
     {
         _createNewGameButton.onClick.AddListener(SwitchToCreateGameWindow);
         _joinFriendButton.onClick.AddListener(SwitchToFriendChoiceWindow);
         _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
     }
 
-    private void UnsubscribeButtons()
+    public void UnsubscribeButtons()
     {
         _createNewGameButton.onClick.RemoveListener(SwitchToCreateGameWindow);
         _joinFriendButton.onClick.RemoveListener(SwitchToFriendChoiceWindow);

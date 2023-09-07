@@ -17,9 +17,7 @@ public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
     {
         Canvas = GetComponent<Canvas>();
         ResetFields();
-        _loginAccountButton.onClick.AddListener(LoginAccount);
-        _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
-        _loginAccountStatusBar.onClick.AddListener(SwitchToMainMenu);
+        SubscribeButtons();
         PlayFabService.Instance.AccountLoginCallback += ShowLoginResult;
     }
 
@@ -27,10 +25,22 @@ public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
     {
         Canvas = null;
         ResetFields();
+        UnsubscribeButtons();
+        if (PlayFabService.Instance != null) PlayFabService.Instance.AccountLoginCallback -= ShowLoginResult;
+    }
+
+    public void SubscribeButtons()
+    {
+        _loginAccountButton.onClick.AddListener(LoginAccount);
+        _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
+        _loginAccountStatusBar.onClick.AddListener(SwitchToMainMenu);
+    }
+
+    public void UnsubscribeButtons()
+    {
         _loginAccountButton.onClick.RemoveListener(LoginAccount);
         _backToMainMenuButton.onClick.RemoveListener(SwitchToMainMenu);
         _loginAccountStatusBar.onClick.RemoveListener(SwitchToMainMenu);
-        if (PlayFabService.Instance != null) PlayFabService.Instance.AccountLoginCallback -= ShowLoginResult;
     }
 
     private void LoginAccount() => PlayFabService.Instance.ConnectViaPlayFab(_username.text, _password.text);

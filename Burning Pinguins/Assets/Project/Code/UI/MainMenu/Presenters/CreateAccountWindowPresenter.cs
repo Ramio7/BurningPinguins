@@ -18,10 +18,7 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
     {
         Canvas = GetComponent<Canvas>();
         ResetFields();
-        _createAccountButton.onClick.AddListener(CreateAccount);
-        _backToMenuButton.onClick.AddListener(SwitchToMainMenu);
-        _createAccountStatusBar.onClick.AddListener(SwitchToMainMenu);
-        _createAccountStatusBar.onClick.AddListener(ResetFields);
+        SubscribeButtons();
         PlayFabService.Instance.AccountCreationCallback += LoginPlayFab;
         PlayFabService.Instance.AccountCreationCallback += ShowAccountCreationResult;
     }
@@ -30,15 +27,28 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
     {
         Canvas = null;
         ResetFields();
-        _createAccountButton.onClick.RemoveListener(CreateAccount);
-        _backToMenuButton.onClick.RemoveListener(SwitchToMainMenu);
-        _createAccountStatusBar.onClick.RemoveListener(SwitchToMainMenu);
-        _createAccountStatusBar.onClick.RemoveListener(ResetFields);
+        UnsubscribeButtons();
         if (PlayFabService.Instance != null)
         {
             PlayFabService.Instance.AccountCreationCallback -= LoginPlayFab;
             PlayFabService.Instance.AccountCreationCallback -= ShowAccountCreationResult;
         }
+    }
+
+    public void SubscribeButtons()
+    {
+        _createAccountButton.onClick.AddListener(CreateAccount);
+        _backToMenuButton.onClick.AddListener(SwitchToMainMenu);
+        _createAccountStatusBar.onClick.AddListener(SwitchToMainMenu);
+        _createAccountStatusBar.onClick.AddListener(ResetFields);
+    }
+
+    public void UnsubscribeButtons()
+    {
+        _createAccountButton.onClick.RemoveListener(CreateAccount);
+        _backToMenuButton.onClick.RemoveListener(SwitchToMainMenu);
+        _createAccountStatusBar.onClick.RemoveListener(SwitchToMainMenu);
+        _createAccountStatusBar.onClick.RemoveListener(ResetFields);
     }
 
     private void CreateAccount() => PlayFabService.Instance.CreatePlayFabAccount(_usernameInputField.text, _emailInputField.text, _passwordInputField.text);

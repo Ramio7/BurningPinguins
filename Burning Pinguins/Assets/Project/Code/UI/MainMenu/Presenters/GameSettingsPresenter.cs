@@ -16,13 +16,23 @@ public class GameSettingsPresenter : MonoBehaviour, IUiWindow
     public void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
-        _audioSlider.onValueChanged.AddListener(SetAudioVolume);
-        _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
+        SubscribeButtons();
     }
 
     public void OnDisable()
     {
         Canvas = null;
+        UnsubscribeButtons();
+    }
+
+    public void SubscribeButtons()
+    {
+        _audioSlider.onValueChanged.AddListener(SetAudioVolume);
+        _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
+    }
+
+    public void UnsubscribeButtons()
+    {
         _audioSlider.onValueChanged.RemoveListener(SetAudioVolume);
         _backToMainMenuButton.onClick.RemoveListener(SwitchToMainMenu);
     }
