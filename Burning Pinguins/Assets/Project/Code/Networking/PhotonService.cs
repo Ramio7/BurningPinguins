@@ -38,7 +38,7 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.AuthValues = new();
         PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.JoinLobby(_lobby);
-        await Task.Run(() => WaitLobbyJoined());
+        await Task.Run(() => WaitLobbyJoinAsync());
         GetRoomList();
     }
 
@@ -64,7 +64,7 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
     }
 
-    private Task WaitLobbyJoined()
+    private Task WaitLobbyJoinAsync()
     {
         while (PhotonNetwork.NetworkClientState != ClientState.JoinedLobby) Task.Delay(1);
         return Task.CompletedTask;

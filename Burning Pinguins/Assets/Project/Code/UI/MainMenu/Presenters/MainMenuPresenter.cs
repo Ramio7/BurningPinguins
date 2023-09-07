@@ -46,7 +46,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _settingsButton.onClick.RemoveListener(SwitchToSettingsWindow);
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
-        _startGameButton.onClick.RemoveListener(PhotonService.Instance.ConnectLobby);
+        if (PhotonService.Instance != null) _startGameButton.onClick.RemoveListener(PhotonService.Instance.ConnectLobby);
         _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
     }
 

@@ -12,7 +12,10 @@ public class PlayFabService : MonoBehaviour
     public string Password { get => _loggedAccountData.AccountPassword; private set => _loggedAccountData.AccountPassword = value; }
     public PlayerAccountData LoggedAccountData { get => _loggedAccountData; private set => _loggedAccountData = value; }
     public string AccountCreationMessage { get; set; }
+    public string AccountLoginMessage { get; set; }
+
     public event Action<bool> AccountCreationCallback;
+    public event Action<bool> AccountLoginCallback;
 
     public static PlayFabService Instance { get; private set; }
 
@@ -36,13 +39,12 @@ public class PlayFabService : MonoBehaviour
             RequireBothUsernameAndEmail = true,
         }, result =>
         {
+            AccountCreationMessage = result.ToString();
             AccountCreationCallback.Invoke(true);
-            AccountCreationMessage = "Account created";
         }, error =>
         {
-            AccountCreationCallback.Invoke(false);
             AccountCreationMessage = error.ErrorMessage;
-            Debug.LogError($"Fail: {error.ErrorMessage}");
+            AccountCreationCallback.Invoke(false);
         });
     }
 
@@ -60,10 +62,13 @@ public class PlayFabService : MonoBehaviour
             {
                 _loggedAccountData.AccountName = username;
                 _loggedAccountData.AccountPassword = password;
+                AccountLoginMessage = result.ToString();
+                AccountLoginCallback.Invoke(true);
             },
             error =>
             {
-                Debug.LogError($"Fail: {error.ErrorMessage}");
+                AccountLoginMessage = error.ErrorMessage;
+                AccountLoginCallback.Invoke(false);
             });
     }
 }

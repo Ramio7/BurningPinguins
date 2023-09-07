@@ -1,8 +1,7 @@
-using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LobbyPresenter : MonoBehaviourPunCallbacks, IUiWindow
+public class LobbyPresenter : MonoBehaviour, IUiWindow
 {
     [SerializeField] private Button _createNewGameButton;
     [SerializeField] private Button _joinFriendButton;
@@ -10,14 +9,13 @@ public class LobbyPresenter : MonoBehaviourPunCallbacks, IUiWindow
 
     public static Canvas Canvas { get; private set; }
 
-    public override void OnEnable()
+    public void OnEnable()
     {
-        PhotonNetwork.AddCallbackTarget(this);
         Canvas = GetComponent<Canvas>();
         SubscribeButtons();
     }
 
-    public override void OnDisable()
+    public void OnDisable()
     {
         Canvas = null;
         UnsubscribeButtons();
@@ -25,19 +23,19 @@ public class LobbyPresenter : MonoBehaviourPunCallbacks, IUiWindow
 
     private void SubscribeButtons()
     {
-        _createNewGameButton.onClick.AddListener(SwitchToCreateNewGameWindow);
+        _createNewGameButton.onClick.AddListener(SwitchToCreateGameWindow);
         _joinFriendButton.onClick.AddListener(SwitchToFriendChoiceWindow);
         _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
     }
 
     private void UnsubscribeButtons()
     {
-        _createNewGameButton.onClick.RemoveListener(SwitchToCreateNewGameWindow);
+        _createNewGameButton.onClick.RemoveListener(SwitchToCreateGameWindow);
         _joinFriendButton.onClick.RemoveListener(SwitchToFriendChoiceWindow);
         _backToMainMenuButton.onClick.RemoveListener(SwitchToMainMenu);
     }
 
-    private void SwitchToCreateNewGameWindow()
+    private void SwitchToCreateGameWindow()
     {
 
     }

@@ -34,8 +34,11 @@ public class CreateAccountWindowPresenter : MonoBehaviour, IUiWindow
         _backToMenuButton.onClick.RemoveListener(SwitchToMainMenu);
         _createAccountStatusBar.onClick.RemoveListener(SwitchToMainMenu);
         _createAccountStatusBar.onClick.RemoveListener(ResetFields);
-        PlayFabService.Instance.AccountCreationCallback -= LoginPlayFab;
-        PlayFabService.Instance.AccountCreationCallback -= ShowAccountCreationResult;
+        if (PlayFabService.Instance != null)
+        {
+            PlayFabService.Instance.AccountCreationCallback -= LoginPlayFab;
+            PlayFabService.Instance.AccountCreationCallback -= ShowAccountCreationResult;
+        }
     }
 
     private void CreateAccount() => PlayFabService.Instance.CreatePlayFabAccount(_usernameInputField.text, _emailInputField.text, _passwordInputField.text);
