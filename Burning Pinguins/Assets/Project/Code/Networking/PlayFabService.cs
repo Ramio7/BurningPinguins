@@ -11,11 +11,13 @@ public class PlayFabService : MonoBehaviour
     public string Email { get => _loggedAccountData.AccountEmail; private set => _loggedAccountData.AccountEmail = value; }
     public string Password { get => _loggedAccountData.AccountPassword; private set => _loggedAccountData.AccountPassword = value; }
     public PlayerAccountData LoggedAccountData { get => _loggedAccountData; private set => _loggedAccountData = value; }
-    public string AccountCreationMessage { get; set; }
-    public string AccountLoginMessage { get; set; }
+    public string AccountCreationMessage { get; private set; }
+    public string AccountLoginMessage { get; private set; }
+    public string AddFriendMessage { get; private set; }
 
     public event Action<bool> AccountCreationCallback;
     public event Action<bool> AccountLoginCallback;
+    public event Action<bool> AddFriendCallback;
 
     public static PlayFabService Instance { get; private set; }
 
@@ -70,5 +72,23 @@ public class PlayFabService : MonoBehaviour
                 AccountLoginMessage = error.ErrorMessage;
                 AccountLoginCallback.Invoke(false);
             });
+    }
+
+    public void AddFriend(string username)
+    {
+        PlayFabClientAPI.AddFriend(new() 
+        {
+            FriendUsername = username
+        },
+        result => 
+        {
+            AddFriendMessage = result.ToString();
+            AddFriendCallback.Invoke(true);
+        },
+        error => 
+        {
+            AddFriendMessage = error.ErrorMessage;
+            AddFriendCallback.Invoke(false);
+        });
     }
 }

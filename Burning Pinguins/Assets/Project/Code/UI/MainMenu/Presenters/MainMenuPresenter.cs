@@ -12,6 +12,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     [SerializeField] private Button _shopButton;
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _startGameButton;
+    [SerializeField] private Button _addFriendButton;
 
     public static Canvas Canvas { get; private set; }
 
@@ -19,7 +20,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     {
         Canvas = GetComponent<Canvas>();
         SubscribeButtons();
-        SetSwitchableButtonsActive(PlayFabClientAPI.IsClientLoggedIn());
+        SetSwitchableButtonsActive(PlayFabClientAPI.IsClientLoggedIn()); //разберись почему не правильно определяет логин плей фаба
     }
 
     public void OnDisable()
@@ -37,6 +38,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _exitButton.onClick.AddListener(Application.Quit);
         _startGameButton.onClick.AddListener(PhotonService.Instance.ConnectLobby);
         _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
+        _addFriendButton.onClick.AddListener(SwitchToAddFriendWindow);
     }
 
     public void UnsubscribeButtons()
@@ -47,7 +49,8 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
         if (PhotonService.Instance != null) _startGameButton.onClick.RemoveListener(PhotonService.Instance.ConnectLobby);
-        _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
+        _startGameButton.onClick.RemoveListener(SwitchToLobbyWindow);
+        _addFriendButton.onClick.RemoveListener(SwitchToAddFriendWindow);
     }
 
     private void SetSwitchableButtonsActive(bool isLoggedIn)
@@ -84,5 +87,11 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     {
         Canvas.enabled = false;
         LobbyPresenter.Canvas.enabled = true;
+    }
+
+    private void SwitchToAddFriendWindow()
+    {
+        Canvas.enabled = false;
+        AddFriendWindowPresenter.Canvas.enabled = true;
     }
 }
