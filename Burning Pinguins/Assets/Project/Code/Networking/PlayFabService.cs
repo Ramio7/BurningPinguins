@@ -1,3 +1,4 @@
+using Photon.Pun;
 using PlayFab;
 using PlayFab.ClientModels;
 using System;
@@ -14,6 +15,7 @@ public class PlayFabService : MonoBehaviour
     public string AccountCreationMessage { get; private set; }
     public string AccountLoginMessage { get; private set; }
     public string AddFriendMessage { get; private set; }
+    public string CurrentAccountID { get; private set; }
 
     public event Action<bool> AccountCreationCallback;
     public event Action<bool> AccountLoginCallback;

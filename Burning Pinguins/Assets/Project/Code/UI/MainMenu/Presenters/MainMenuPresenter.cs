@@ -55,7 +55,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
 
     private void SetSwitchableButtonsActive(bool isLoggedIn)
     {
-        if (isLoggedIn) _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Log in";
+        if (!isLoggedIn) _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Log in";
         else _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Switch account";
     }
 

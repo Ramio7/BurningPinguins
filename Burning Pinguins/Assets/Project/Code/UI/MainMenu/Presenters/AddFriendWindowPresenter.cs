@@ -28,12 +28,14 @@ public class AddFriendWindowPresenter : MonoBehaviour, IUiWindow
     public void SubscribeButtons()
     {
         _addFriendButton.onClick.AddListener(AddFriend);
+        _addFriendStatusButton.onClick.AddListener(SwitchToMainMenu);
         _backButton.onClick.AddListener(SwitchToMainMenu);
     }
 
     public void UnsubscribeButtons()
     {
         _addFriendButton.onClick.RemoveListener(AddFriend);
+        _addFriendStatusButton.onClick.AddListener(SwitchToMainMenu);
         _backButton.onClick.RemoveListener(SwitchToMainMenu);
     }
 

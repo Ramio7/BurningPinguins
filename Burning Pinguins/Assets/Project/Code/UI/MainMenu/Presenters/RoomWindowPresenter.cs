@@ -1,6 +1,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 {
     [SerializeField] private Button _startTheGameButton;
     [SerializeField] private Button _leaveRoomButton;
+    [SerializeField] private TMP_Text _roomname;
 
     [SerializeField] private PlayerInfoContainer _playerInfoContainerPrefab;
 
@@ -20,6 +22,8 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     public override void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
+
+        _roomname.text = PhotonNetwork.CurrentRoom.Name;
 
         if (!PhotonNetwork.IsMasterClient) _startTheGameButton.interactable = false;
         else _startTheGameButton.interactable = true;
