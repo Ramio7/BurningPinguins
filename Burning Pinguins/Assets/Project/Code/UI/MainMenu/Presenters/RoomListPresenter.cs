@@ -4,45 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiWindow
+public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
 {
     [SerializeField] private Button _roomInfoContainerPrefab;
     [SerializeField] private Transform _roomListContainer;
 
     private List<RoomInfoContainer> _rooms = new();
 
-    public static Canvas Canvas;
-
     public override void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
-        Canvas = GetComponent<Canvas>();
     }
 
     public override void OnDisable()
     {
-        Canvas = null;
-        ClearRoomList();
+        ClearRoomListUi();
+        _rooms.Clear();
     }
 
-    public void SubscribeButtons()
-    {
-        
-    }
-
-    public void UnsubscribeButtons()
-    {
-        
-    }
-
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        UpdateRoomListUI(roomList);
-    }
+    public override void OnRoomListUpdate(List<RoomInfo> roomList) => UpdateRoomListUI(roomList);
 
     private void UpdateRoomListUI(List<RoomInfo> roomList)
     {
-        ClearRoomList();
+        ClearRoomListUi();
 
         foreach (var roomInfo in roomList)
         {
@@ -50,7 +34,7 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiWindow
         }
     }
 
-    private void ClearRoomList()
+    private void ClearRoomListUi()
     {
         foreach (var roomInfo in _rooms)
         {

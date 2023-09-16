@@ -9,9 +9,10 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 {
     [SerializeField] private Button _startTheGameButton;
     [SerializeField] private Button _leaveRoomButton;
+    [SerializeField] private Button _roomnameButton;
     [SerializeField] private TMP_Text _roomname;
 
-    [SerializeField] private PlayerInfoContainer _playerInfoContainerPrefab;
+    [SerializeField] private Button _playerInfoContainerPrefab;
 
     [SerializeField] private Transform _playersUiContainer;
 
@@ -45,21 +46,22 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     public void SubscribeButtons()
     {
         _startTheGameButton.onClick.AddListener(StartGame);
-        _leaveRoomButton.onClick.AddListener(SwitchToMainMenu);
+        _leaveRoomButton.onClick.AddListener(SwitchToLobbyWindow);
         _leaveRoomButton.onClick.AddListener(LeaveCurrentRoom);
+        _roomnameButton.onClick.AddListener(CopyRoomnameToClipboard);
     }
 
     public void UnsubscribeButtons()
     {
         _startTheGameButton.onClick.RemoveListener(StartGame);
-        _leaveRoomButton.onClick.RemoveListener(SwitchToMainMenu);
+        _leaveRoomButton.onClick.RemoveListener(SwitchToLobbyWindow);
         _leaveRoomButton.onClick.RemoveListener(LeaveCurrentRoom);
+        _roomnameButton.onClick.RemoveListener(CopyRoomnameToClipboard);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        var playerContainer = _playerInfoContainerPrefab.Init(newPlayer, _playersUiContainer);
-        _players.Add(playerContainer);
+        _players.Add(new(newPlayer, _playersUiContainer, _playerInfoContainerPrefab));
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -74,9 +76,11 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 
     private void StartGame() => PhotonNetwork.LoadLevel(SceneList.SimpleGameMap.ToString());
 
-    private void SwitchToMainMenu()
+    private void SwitchToLobbyWindow()
     {
         Canvas.enabled = false;
-        MainMenuPresenter.Canvas.enabled = true;
+        LobbyPresenter.Canvas.enabled = true;
     }
+
+    private void CopyRoomnameToClipboard() => GUIUtility.systemCopyBuffer = _roomname.text;
 }

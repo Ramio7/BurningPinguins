@@ -1,3 +1,4 @@
+using PlayFab;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +35,7 @@ public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
         _loginAccountButton.onClick.AddListener(LoginAccount);
         _backToMainMenuButton.onClick.AddListener(SwitchToMainMenu);
         _loginAccountStatusBar.onClick.AddListener(SwitchToMainMenu);
+        _loginAccountStatusBar.onClick.AddListener(ResetFields);
     }
 
     public void UnsubscribeButtons()
@@ -41,6 +43,7 @@ public class LoginAccountWindowPresenter : MonoBehaviour, IUiWindow
         _loginAccountButton.onClick.RemoveListener(LoginAccount);
         _backToMainMenuButton.onClick.RemoveListener(SwitchToMainMenu);
         _loginAccountStatusBar.onClick.RemoveListener(SwitchToMainMenu);
+        _loginAccountStatusBar.onClick.RemoveListener(ResetFields);
     }
 
     private void LoginAccount() => PlayFabService.Instance.ConnectViaPlayFab(_username.text, _password.text);

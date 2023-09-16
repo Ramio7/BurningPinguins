@@ -15,18 +15,22 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     [SerializeField] private Button _addFriendButton;
 
     public static Canvas Canvas { get; private set; }
+    public static MainMenuPresenter Instance { get; private set; }
 
     public void OnEnable()
     {
+        Instance = this;
         Canvas = GetComponent<Canvas>();
         SubscribeButtons();
-        SetSwitchableButtonsActive(PlayFabClientAPI.IsClientLoggedIn()); //разберись почему не правильно определяет логин плей фаба
+        PlayFabService.Instance.AccountLoginCallback += SetSwitchableButtonsActive;
     }
 
     public void OnDisable()
     {
+        Instance = null;
         Canvas = null;
         UnsubscribeButtons();
+        if (PlayFabService.Instance != null) PlayFabService.Instance.AccountLoginCallback -= SetSwitchableButtonsActive;
     }
 
     public void SubscribeButtons()
@@ -53,7 +57,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _addFriendButton.onClick.RemoveListener(SwitchToAddFriendWindow);
     }
 
-    private void SetSwitchableButtonsActive(bool isLoggedIn)
+    public void SetSwitchableButtonsActive(bool isLoggedIn)
     {
         if (!isLoggedIn) _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Log in";
         else _loginAccountButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Switch account";

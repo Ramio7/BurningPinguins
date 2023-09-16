@@ -37,12 +37,14 @@ public class LobbyPresenter : MonoBehaviour, IUiWindow
 
     private void SwitchToCreateGameWindow()
     {
-
+        Canvas.enabled = false;
+        CreateGameWindowPresenter.Canvas.enabled = true;
     }
 
     private void SwitchToFriendChoiceWindow()
     {
-
+        Canvas.enabled = false;
+        JoinFriendWindowPresenter.Canvas.enabled = true;
     }
 
     private void SwitchToMainMenu()
