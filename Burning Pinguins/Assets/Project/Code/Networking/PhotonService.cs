@@ -10,6 +10,8 @@ public class PhotonService : MonoBehaviourPunCallbacks
     private const string MAP_KEY = "C0";
     private const string RATING_KEY = "C1";
 
+    public TypedLobby CurrentLobby { get => _lobby; private set => _lobby = value; }
+
     public static Action OnRoomJoin;
     public static PhotonService Instance { get; private set; }
 
@@ -59,15 +61,15 @@ public class PhotonService : MonoBehaviourPunCallbacks
         OnRoomJoin?.Invoke();
     }
 
-    private void GetRoomList()
-    {
-        var roomFilter = $"{MAP_KEY} >= 0 AND {RATING_KEY} >= 0";
-        PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
-    }
-
     private Task WaitLobbyJoinAsync()
     {
         while (PhotonNetwork.NetworkClientState != ClientState.JoinedLobby) Task.Delay(1);
         return Task.CompletedTask;
+    }
+
+    public void GetRoomList()
+    {
+        var roomFilter = $"{MAP_KEY} >= 0 AND {RATING_KEY} >= 0";
+        PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
     }
 }

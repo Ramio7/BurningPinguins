@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class ColliderContactController: IDisposable
 {
-    private float _contactThreshold = 0.5f;
+    private readonly float _contactThreshold = 0.5f;
     private ContactPoint[] _contactPoints;
     private int _contactsCount;
     private Collider _collider;
@@ -18,9 +18,17 @@ public class ColliderContactController: IDisposable
 
     public ColliderContactController(Collider collider)
     {
-        _contactPoints = new ContactPoint[10];
+        _contactPoints = new ContactPoint[30];
         _collider = collider;
         GameEntryPoint.Instance.OnUpdateEvent += OnUpdate;
+        Application.wantsToQuit += OnDispose;
+    }
+
+    private bool OnDispose()
+    {
+        Dispose();
+        Application.wantsToQuit -= OnDispose;
+        return true;
     }
 
     public void Dispose()

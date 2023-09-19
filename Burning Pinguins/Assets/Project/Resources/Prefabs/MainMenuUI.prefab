@@ -2335,7 +2335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000000041027715}
+  m_AnchoredPosition: {x: 0, y: 0.0000112032285}
   m_SizeDelta: {x: 0, y: 800}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &3773958062109036638
@@ -2783,6 +2783,7 @@ GameObject:
   - component: {fileID: 6900393086793260172}
   - component: {fileID: 4236189337361176072}
   - component: {fileID: 5280019402167532531}
+  - component: {fileID: 613470067117443624}
   m_Layer: 5
   m_Name: PlayersListScrollView
   m_TagString: Untagged
@@ -2880,6 +2881,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &613470067117443624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916367474375495169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c223895dcc3849e4fa7e5e714fef5741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInfoContainerPrefab: {fileID: 8330594953124925480, guid: c6709ccdd00f21d4f9668ebaef256f0e, type: 3}
+  _playersUiContainer: {fileID: 1147331348542302038}
 --- !u!1 &5003899752253835598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,8 +3148,6 @@ MonoBehaviour:
   _leaveRoomButton: {fileID: 404281019018058188}
   _roomnameButton: {fileID: 6808407340903623832}
   _roomname: {fileID: 1329499522420093580}
-  _playerInfoContainerPrefab: {fileID: 8330594953124925480, guid: c6709ccdd00f21d4f9668ebaef256f0e, type: 3}
-  _playersUiContainer: {fileID: 1147331348542302038}
 --- !u!1 &5372553623056900037
 GameObject:
   m_ObjectHideFlags: 0

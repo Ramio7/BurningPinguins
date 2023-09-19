@@ -11,6 +11,8 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
 
     private List<RoomInfoContainer> _rooms = new();
 
+    public Transform ListTransform { get => _roomListContainer; private set => _roomListContainer = value; }
+
     public override void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
@@ -20,6 +22,11 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
     {
         ClearRoomListUi();
         _rooms.Clear();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        PhotonService.Instance.GetRoomList();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList) => UpdateRoomListUI(roomList);

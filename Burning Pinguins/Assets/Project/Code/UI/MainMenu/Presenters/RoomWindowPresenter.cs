@@ -1,6 +1,4 @@
 using Photon.Pun;
-using Photon.Realtime;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +9,6 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     [SerializeField] private Button _leaveRoomButton;
     [SerializeField] private Button _roomnameButton;
     [SerializeField] private TMP_Text _roomname;
-
-    [SerializeField] private Button _playerInfoContainerPrefab;
-
-    [SerializeField] private Transform _playersUiContainer;
-
-    private List<PlayerInfoContainer> _players = new();
 
     public static Canvas Canvas;
 
@@ -57,19 +49,6 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         _leaveRoomButton.onClick.RemoveListener(SwitchToLobbyWindow);
         _leaveRoomButton.onClick.RemoveListener(LeaveCurrentRoom);
         _roomnameButton.onClick.RemoveListener(CopyRoomnameToClipboard);
-    }
-
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        _players.Add(new(newPlayer, _playersUiContainer, _playerInfoContainerPrefab));
-    }
-
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-        bool playerResult(PlayerInfoContainer result) { return result.PlayerInfo == otherPlayer; }
-        var playerToDelete = _players.Find(playerResult);
-        _players.Remove(playerToDelete);
-        Destroy(playerToDelete.gameObject);
     }
 
     private void LeaveCurrentRoom() => PhotonNetwork.LeaveRoom(false);
