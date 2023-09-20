@@ -6,7 +6,7 @@ public class UserKeyboardInput : UserInput
     {
         float xAxis = Input.GetAxis("Horizontal");
         float yAxis = Input.GetAxis("Vertical");
-        var direction = new Vector2(xAxis, yAxis);
+        var direction = new Vector3(xAxis, 0, yAxis);
 
         PlayerController.Rigidbody.AddForce(PlayerController.Stats.PlayerSpeed * Time.deltaTime * direction, ForceMode.VelocityChange);
     }
