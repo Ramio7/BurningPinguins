@@ -11,6 +11,6 @@ public class PlayerGameStats : ScriptableObject, IPlayerCharacter
     public float PlayerSpeed { get ; set; }
     public float PLayerJumpForce { get => _playerJumpForce; }
     public float BallThrowForce { get => _ballThrowForce; }
-    public float PlayerBaseSpped { get => _playerBaseSpeed; }
+    public float PlayerBaseSpeed { get => _playerBaseSpeed; }
     public float SprintModifier { get => _sprintModifier; private set => _sprintModifier = value; }
 }

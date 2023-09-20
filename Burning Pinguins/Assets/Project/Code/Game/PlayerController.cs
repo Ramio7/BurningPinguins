@@ -3,13 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(Collider), typeof(Transform), typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour, IPlayerController
 {
-    [SerializeField] private IPlayerCharacter _playerGameStats;
-    [SerializeField] private IBall _ball;
+    [SerializeField] private PlayerGameStats _playerGameStats;
 
-    public IPlayerCharacter Stats { get => _playerGameStats; }
-    public IBall Ball { get => _ball; private set => _ball = value; }
     public bool IsWithBall { get; private set; }
     public Transform Transform { get => gameObject.transform; }
     public Rigidbody Rigidbody { get => gameObject.GetComponent<Rigidbody>(); }
     public Collider Collider { get => gameObject.GetComponent<Collider>(); }
+    public IBall Ball { get; set; }
+    public IPlayerCharacter Stats { get => _playerGameStats; }
 }

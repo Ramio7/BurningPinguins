@@ -14,8 +14,8 @@ public class UserKeyboardInput : UserInput
     protected override void Sprint()
     {
         var stats = PlayerController.Stats;
-        if (Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpped * stats.SprintModifier;
-        else if (!Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpped;
+        if (Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpeed * stats.SprintModifier;
+        else if (!Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpeed;
         else return;
     }
 

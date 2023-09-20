@@ -8,22 +8,13 @@ public class CameraController : MonoBehaviour
     [SerializeField, Min(5.0f)] private float _cameraSpeed;
     [SerializeField, Min(5.0f)] private float _xAxisCameraFrame;
     [SerializeField, Min(5.0f)] private float _zAxisCameraFrame;
-
-    private readonly Camera _camera;
-    private readonly Transform _playerTransform;
-
-    public CameraController(Camera mainCamera, Transform playerTransform)
-    {
-        _camera = mainCamera;
-        _playerTransform = playerTransform;
-        StartCameraFollowing(playerTransform);
-    }
+    [SerializeField] private Transform _playerTransform;
 
     public void StartCameraFollowing(Transform playerTransfrom)
     {
-        _camera.transform.position = playerTransfrom.position + new Vector3(0, _cameraDistance, -_cameraOffset);
+        Camera.main.transform.position = playerTransfrom.position + new Vector3(0, _cameraDistance, -_cameraOffset);
         var zAxis = new Vector3(0, 0, 1);
-        _camera.transform.rotation.ToAngleAxis(out _cameraAngle, out zAxis);
+        Camera.main.transform.rotation.ToAngleAxis(out _cameraAngle, out zAxis);
         GameEntryPoint.Instance.OnUpdateEvent += Follow;
     }
 
@@ -36,7 +27,7 @@ public class CameraController : MonoBehaviour
             || _playerTransform.position.x <= cameraFrameCorner3.x || _playerTransform.position.x <= cameraFrameCorner4.x
             || _playerTransform.position.z >= cameraFrameCorner1.z || _playerTransform.position.z <= cameraFrameCorner2.z
             || _playerTransform.position.z >= cameraFrameCorner3.z || _playerTransform.position.z <= cameraFrameCorner4.z)
-            _camera.transform.Translate(_playerTransform.position, Space.World);
+            Camera.main.transform.Translate(_playerTransform.position, Space.World);
     }
 
     private void CalculateCameraFrame(out Vector3 cameraFrameCorner1, out Vector3 cameraFrameCorner2, out Vector3 cameraFrameCorner3, out Vector3 cameraFrameCorner4)

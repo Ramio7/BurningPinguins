@@ -7,9 +7,6 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
     [SerializeField] private PlayerOverviewPresenter _playerOverviewPrefab;
     [SerializeField] private GameController _gameController;
     [SerializeField] private Transform _uiContainer;
-    [SerializeField] private Camera _mainCamera;
-
-    public Camera MainCamera { get => _mainCamera; private set => _mainCamera = value; }
 
     public static GameEntryPoint Instance { get; private set; }
 
