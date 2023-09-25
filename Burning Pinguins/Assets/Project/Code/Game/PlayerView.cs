@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider), typeof(Transform), typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour, IPlayerController
+public class PlayerView : MonoBehaviour, IPlayerView
 {
     [SerializeField] private PlayerGameStats _playerGameStats;
 

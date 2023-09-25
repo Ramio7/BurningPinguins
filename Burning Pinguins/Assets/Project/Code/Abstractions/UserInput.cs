@@ -1,21 +1,23 @@
 using UnityEngine;
 
-[RequireComponent(typeof(IPlayerController))]
+[RequireComponent(typeof(IPlayerView))]
 public abstract class UserInput : MonoBehaviour
 {
-    protected IPlayerController PlayerController => gameObject.GetComponent<IPlayerController>();
-    protected ColliderContactController ContactController;
+    [SerializeField] private PlayerView _playerView;
+    [SerializeField] private GroundCollisionDetector _collisionDetector;
+
+    protected PlayerView PlayerView { get => _playerView; }
+    protected GroundCollisionDetector GroundCollisionDetector { get => _collisionDetector; }
+    
 
     public void OnEnable()
     {
-        GameEntryPoint.Instance.OnUpdateEvent += OnUpdate;
-        ContactController = new(PlayerController.Collider);
+        GameEntryPoint.Instance.OnFixedUpdateEvent += OnUpdate;
     }
 
     public void OnDisable()
     {
-        GameEntryPoint.Instance.OnUpdateEvent -= OnUpdate;
-        ContactController?.Dispose();
+        GameEntryPoint.Instance.OnFixedUpdateEvent -= OnUpdate;
     }
 
     protected void OnUpdate()

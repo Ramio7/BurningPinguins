@@ -8,12 +8,12 @@ public class UserKeyboardInput : UserInput
         float yAxis = Input.GetAxis("Vertical");
         var direction = new Vector3(xAxis, 0, yAxis);
 
-        PlayerController.Rigidbody.AddForce(PlayerController.Stats.PlayerSpeed * Time.deltaTime * direction, ForceMode.VelocityChange);
+        PlayerView.Rigidbody.velocity = PlayerView.Stats.PlayerSpeed * direction.normalized;
     }
 
     protected override void Sprint()
     {
-        var stats = PlayerController.Stats;
+        var stats = PlayerView.Stats;
         if (Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpeed * stats.SprintModifier;
         else if (!Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpeed;
         else return;
@@ -21,15 +21,14 @@ public class UserKeyboardInput : UserInput
 
     protected override void Jump()
     {
-        if (!(Input.GetKeyDown(KeyCode.Space) && ContactController.IsGrounded)) return;
-        
-        PlayerController.Rigidbody.AddForce(PlayerController.Stats.PLayerJumpForce * Time.deltaTime * PlayerController.Transform.up, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCollisionDetector.IsGrounded) PlayerView.Rigidbody.AddForce(PlayerView.Stats.PLayerJumpForce * 
+            Time.deltaTime * PlayerView.Transform.up, ForceMode.Impulse);
     }
 
     protected override void Throw()
     {
-        if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerController.IsWithBall)) return; 
+        if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall)) return; 
         
-        PlayerController.Ball.Rigidbody.AddForce(PlayerController.Stats.BallThrowForce * Time.deltaTime * PlayerController.Transform.forward, ForceMode.VelocityChange);
+        PlayerView.Ball.Rigidbody.AddForce(PlayerView.Stats.BallThrowForce * Time.deltaTime * PlayerView.Transform.forward, ForceMode.Impulse);
     }
 }

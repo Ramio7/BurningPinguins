@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private PlayerController _playerPrefab;
+    [SerializeField] private PlayerView _playerPrefab;
+
+    private PlayerView _playerView;
 
     public override void OnEnable()
     {
-        Instantiate(_playerPrefab);
+        _playerView = Instantiate(_playerPrefab);
+        _playerView.GetComponent<CameraMover>().StartCameraFollowing();
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IPlayerController
+public interface IPlayerView
 {
     public IPlayerCharacter Stats { get; }
     public IBall Ball { get; set; }

@@ -16,18 +16,13 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
     public void Update() => OnUpdateEvent?.Invoke();
     public void FixedUpdate() => OnFixedUpdateEvent?.Invoke();
 
-    public void Start()
+    public void Awake()
     {
         Instance = this;
 
-        if (photonView.IsMine)
-        {
-            Instantiate(_playerOverviewPrefab, _uiContainer);
-        }
-
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            PhotonNetwork.InstantiateRoomObject(_gameController.name, Vector3.zero, Quaternion.identity);
-        }
+        //if (photonView.IsMine)
+        //{
+        //    Instantiate(_playerOverviewPrefab, _uiContainer);
+        //}
     }
 }
