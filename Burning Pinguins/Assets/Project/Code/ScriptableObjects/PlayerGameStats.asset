@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ce21514b494054cbf6421e6fb4a9b7, type: 3}
   m_Name: PlayerGameStats
   m_EditorClassIdentifier: 
-  _playerBaseSpeed: 9.5
-  _playerJumpForce: 1
-  _ballThrowForce: 50
-  _sprintModifier: 1.5
+  _playerBaseSpeed: 10
+  _playerJumpForce: 10000
+  _ballThrowForce: 408
+  _sprintModifier: 2.5

@@ -12,24 +12,26 @@ public abstract class UserInput : MonoBehaviour
 
     public void OnEnable()
     {
-        GameEntryPoint.Instance.OnFixedUpdateEvent += OnUpdate;
+        GameEntryPoint.Instance.OnUpdateEvent += OnUpdate;
     }
 
     public void OnDisable()
     {
-        GameEntryPoint.Instance.OnFixedUpdateEvent -= OnUpdate;
+        GameEntryPoint.Instance.OnUpdateEvent -= OnUpdate;
     }
 
     protected void OnUpdate()
     {
+        Throw();
+        if (!GroundCollisionDetector.IsGrounded) return;
         Move();
         Sprint();
         Jump();
-        Throw();
     }
 
     protected abstract void Move();
     protected abstract void Sprint();
     protected abstract void Jump();
     protected abstract void Throw();
+    protected abstract void Rotate();
 }
