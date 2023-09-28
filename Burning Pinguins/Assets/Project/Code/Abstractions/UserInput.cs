@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(IPlayerView))]
+[RequireComponent(typeof(IPlayerView), typeof(GroundCollisionDetector))]
 public abstract class UserInput : MonoBehaviour
 {
     [SerializeField] private PlayerView _playerView;
