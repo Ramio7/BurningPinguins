@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private PlayerView _playerPrefab;
-
     public static GameController Instance;
 
     public override void OnEnable()
@@ -19,7 +17,9 @@ public class GameController : MonoBehaviourPunCallbacks
 
     public void SpawnPlayer()
     {
-        Instantiate(_playerPrefab).GetComponent<CameraMover>().StartCameraFollowing();
+        //var newPlayer = (PlayerView)PhotonNetwork.Instantiate(_playerPrefab);
+        //newPlayer.GetComponent<CameraMover>().StartCameraFollowing();                                     продумай спавн игрока
+        //newPlayer.SetPlayerCharacteristics(PlayerDataContainer.Instance.GetPlayerCharacteristics());
     }
 
     public void RevivePlayer()

@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerOverviewPrefab: {fileID: 4008497694038824424, guid: bbd2de400f6055d40b8077c9eecf5ffc, type: 3}
-  _gameControllerPrefab: {fileID: 0}
+  _gameControllerPrefab: {fileID: 256532468686397552, guid: bf79c8c0225a0af41bfd47017c6b77a8, type: 3}
   _uiContainer: {fileID: 2059217078}
 --- !u!4 &1936553056
 Transform:
