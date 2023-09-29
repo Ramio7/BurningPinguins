@@ -8,12 +8,12 @@ public class UserKeyboardInput : UserInput
         float yAxis = Input.GetAxis("Vertical");
         var direction = new Vector3(xAxis, 0, yAxis);
 
-        PlayerView.Rigidbody.velocity = PlayerView.Stats.PlayerSpeed * direction.normalized;
+        PlayerView.Rigidbody.velocity = PlayerView.Characteristics.PlayerSpeed * direction.normalized;
     }
 
     protected override void Sprint()
     {
-        var stats = PlayerView.Stats;
+        var stats = PlayerView.Characteristics;
         if (Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpeed * stats.SprintModifier;
         else if (!Input.GetKey(KeyCode.LeftShift)) stats.PlayerSpeed = stats.PlayerBaseSpeed;
         else return;
@@ -21,14 +21,14 @@ public class UserKeyboardInput : UserInput
 
     protected override void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) PlayerView.Rigidbody.AddForce(PlayerView.Stats.PLayerJumpForce * PlayerView.Transform.up, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space)) PlayerView.Rigidbody.AddForce(PlayerView.Characteristics.PLayerJumpForce * PlayerView.Transform.up, ForceMode.Impulse);
     }
 
     protected override void Throw()
     {
         if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall)) return; 
         
-        PlayerView.Ball.Rigidbody.AddForce(PlayerView.Stats.BallThrowForce * Time.deltaTime * PlayerView.Transform.forward, ForceMode.Impulse);
+        PlayerView.Ball.Rigidbody.AddForce(PlayerView.Characteristics.BallThrowForce * Time.deltaTime * PlayerView.Transform.forward, ForceMode.Impulse);
     }
 
     protected override void Rotate()

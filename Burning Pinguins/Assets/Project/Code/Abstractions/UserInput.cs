@@ -27,6 +27,7 @@ public abstract class UserInput : MonoBehaviour
         Move();
         Sprint();
         Jump();
+        Rotate();
     }
 
     protected abstract void Move();

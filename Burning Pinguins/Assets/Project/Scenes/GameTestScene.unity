@@ -389,7 +389,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1936553056}
   - component: {fileID: 1936553055}
-  - component: {fileID: 1936553057}
   m_Layer: 0
   m_Name: GameEntryPoint
   m_TagString: Untagged
@@ -410,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerOverviewPrefab: {fileID: 4008497694038824424, guid: bbd2de400f6055d40b8077c9eecf5ffc, type: 3}
-  _gameController: {fileID: 1936553057}
+  _gameControllerPrefab: {fileID: 0}
   _uiContainer: {fileID: 2059217078}
 --- !u!4 &1936553056
 Transform:
@@ -427,19 +426,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1936553057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936553054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52eff24c99fa5684aaa7f7adda58d7cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 8491557673013550541, guid: 090332072b6734e43b9a697ab8c25a4c, type: 3}
 --- !u!1 &1968350050
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,11 +5,31 @@ public class GameController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private PlayerView _playerPrefab;
 
-    private PlayerView _playerView;
+    public static GameController Instance;
 
     public override void OnEnable()
     {
-        _playerView = Instantiate(_playerPrefab);
-        _playerView.GetComponent<CameraMover>().StartCameraFollowing();
+        Instance = this;
+    }
+
+    public override void OnDisable()
+    {
+        Instance = null;
+    }
+
+    public void SpawnPlayer()
+    {
+        Instantiate(_playerPrefab).GetComponent<CameraMover>().StartCameraFollowing();
+    }
+
+    public void RevivePlayer()
+    {
+
+    }
+
+    public void ShutDownPlayer(PlayerView playerToShutDown)
+    {
+        playerToShutDown.GetComponent<CameraMover>().StopCameraFollowing();
+        playerToShutDown.gameObject.SetActive(false);
     }
 }
