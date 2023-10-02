@@ -1,5 +1,5 @@
 using Photon.Pun;
-using UnityEngine;
+using Photon.Realtime;
 
 public class GameController : MonoBehaviourPunCallbacks
 {
@@ -15,7 +15,7 @@ public class GameController : MonoBehaviourPunCallbacks
         Instance = null;
     }
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(Player player)
     {
         //var newPlayer = (PlayerView)PhotonNetwork.Instantiate(_playerPrefab);
         //newPlayer.GetComponent<CameraMover>().StartCameraFollowing();                                     продумай спавн игрока

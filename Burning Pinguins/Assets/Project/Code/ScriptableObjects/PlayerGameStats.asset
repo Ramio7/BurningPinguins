@@ -16,4 +16,4 @@ MonoBehaviour:
   _playerJumpForce: 10000
   _ballThrowForce: 408
   _sprintModifier: 2.5
-  PlayerPrefab: {fileID: 8491557673013550541, guid: 090332072b6734e43b9a697ab8c25a4c, type: 3}
+  _playerPrefab: {fileID: 8491557673013550541, guid: 090332072b6734e43b9a697ab8c25a4c, type: 3}

@@ -8,11 +8,9 @@ public class PlayerGameCharacteristics : ScriptableObject, IPlayerCharacter
     [SerializeField, Range(150f, 1000f)] private float _ballThrowForce;
     [SerializeField, Range(1.5f, 10f)] private float _sprintModifier;
 
-    public PlayerView PlayerPrefab;
-
     public float PlayerSpeed { get ; set; }
     public float PLayerJumpForce { get => _playerJumpForce; }
     public float BallThrowForce { get => _ballThrowForce; }
     public float PlayerBaseSpeed { get => _playerBaseSpeed; }
-    public float SprintModifier { get => _sprintModifier; private set => _sprintModifier = value; }
+    public float SprintModifier { get => _sprintModifier; }
 }

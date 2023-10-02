@@ -21,14 +21,14 @@ public class UserKeyboardInput : UserInput
 
     protected override void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) PlayerView.Rigidbody.AddForce(PlayerView.Characteristics.PLayerJumpForce * PlayerView.Transform.up, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space)) PlayerView.Rigidbody.AddForce(PlayerView.Characteristics.PLayerJumpForce * PlayerView.transform.up, ForceMode.Impulse);
     }
 
     protected override void Throw()
     {
         if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall)) return; 
         
-        PlayerView.Ball.Rigidbody.AddForce(PlayerView.Characteristics.BallThrowForce * Time.deltaTime * PlayerView.Transform.forward, ForceMode.Impulse);
+        PlayerView.Ball.Rigidbody.AddForce(PlayerView.Characteristics.BallThrowForce * Time.deltaTime * PlayerView.transform.forward, ForceMode.Impulse);
     }
 
     protected override void Rotate()
@@ -37,6 +37,6 @@ public class UserKeyboardInput : UserInput
         Physics.Raycast(mouseRay, out RaycastHit hitInfo);
         var mouseHitPosition = hitInfo.point;
         mouseHitPosition.y = PlayerView.transform.position.y;
-        PlayerView.Transform.LookAt(mouseHitPosition);
+        PlayerView.transform.LookAt(mouseHitPosition);
     }
 }

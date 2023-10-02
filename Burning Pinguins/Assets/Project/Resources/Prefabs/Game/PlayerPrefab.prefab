@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a3be956a33da04192234953962f0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerGameCharacteristics: {fileID: 11400000, guid: 5cbb36be5a5b99b4286a4915b2fdc623, type: 2}
 --- !u!114 &962273724329604756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +262,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 5763388845402294139}
+  - {fileID: -7915621715008995527}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

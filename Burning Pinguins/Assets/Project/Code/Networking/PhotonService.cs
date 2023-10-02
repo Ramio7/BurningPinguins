@@ -26,7 +26,6 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = PhotonNetwork.AppVersion;
         PhotonNetwork.AddCallbackTarget(this);
         PhotonNetwork.ConnectUsingSettings();
-        
     }
 
     public override void OnDisable()
