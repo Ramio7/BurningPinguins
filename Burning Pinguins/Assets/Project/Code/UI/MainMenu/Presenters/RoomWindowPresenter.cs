@@ -2,6 +2,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 {
@@ -10,17 +11,15 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     [SerializeField] private Button _roomnameButton;
     [SerializeField] private TMP_Text _roomname;
 
+    [Inject] private readonly PlayerView _playerPrefab;
+
     public static Canvas Canvas;
 
     public override void OnEnable()
     {
         Canvas = GetComponent<Canvas>();
 
-        _roomname.text = PhotonNetwork.CurrentRoom.Name;
-
-        if (!PhotonNetwork.IsMasterClient) _startTheGameButton.interactable = false;
-        else _startTheGameButton.interactable = true;
-
+        InitRoom();
         SubscribeButtons();
 
         PhotonNetwork.AddCallbackTarget(this);
@@ -33,6 +32,22 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         UnsubscribeButtons();
 
         PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    private void InitRoom()
+    {
+        _roomname.text = PhotonNetwork.CurrentRoom.Name;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _startTheGameButton.interactable = true;
+            PhotonNetwork.InstantiateRoomObject("PlayerPrefabList", Vector3.zero, Quaternion.identity);
+        }
+        else
+        {
+            _startTheGameButton.interactable = false;
+            PlayerPrefabsList.Instance.AddPlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber, _playerPrefab);
+        }
     }
 
     public void SubscribeButtons()
@@ -51,7 +66,11 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         _roomnameButton.onClick.RemoveListener(CopyRoomnameToClipboard);
     }
 
-    private void LeaveCurrentRoom() => PhotonNetwork.LeaveRoom(false);
+    private void LeaveCurrentRoom()
+    {
+        PlayerPrefabsList.Instance.DeletePlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber);
+        PhotonNetwork.LeaveRoom(false);
+    }
 
     private void StartGame() => PhotonNetwork.LoadLevel(SceneList.SimpleGameMap.ToString());
 

@@ -1,9 +1,10 @@
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Collider), typeof(Transform), typeof(Rigidbody))]
 public class PlayerView : MonoBehaviour, IPlayerView
 {
-    private PlayerGameCharacteristics _playerGameCharacteristics;
+    [Inject] private readonly IPlayerCharacter _playerGameCharacteristics;
 
     public bool IsWithBall { get; private set; }
     public Rigidbody Rigidbody { get => gameObject.GetComponent<Rigidbody>(); }
