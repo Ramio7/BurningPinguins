@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,6 +50,7 @@ public class LobbyPresenter : MonoBehaviour, IUiWindow
 
     private void SwitchToMainMenu()
     {
+        PhotonNetwork.LeaveLobby();
         Canvas.enabled = false;
         MainMenuPresenter.Canvas.enabled = true;
     }

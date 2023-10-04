@@ -1,4 +1,5 @@
 using PlayFab;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         Canvas = GetComponent<Canvas>();
         SubscribeButtons();
         PlayFabService.Instance.AccountLoginCallback += SetSwitchableButtonsActive;
+        PhotonService.Instance.ConnectedToLobby += SwitchToLobbyWindow;
     }
 
     public void OnDisable()
@@ -41,7 +43,6 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _shopButton.onClick.AddListener(SwitchToShopWindow);
         _exitButton.onClick.AddListener(Application.Quit);
         _startGameButton.onClick.AddListener(PhotonService.Instance.ConnectLobby);
-        _startGameButton.onClick.AddListener(SwitchToLobbyWindow);
         _addFriendButton.onClick.AddListener(SwitchToAddFriendWindow);
     }
 
@@ -53,7 +54,6 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         _shopButton.onClick.RemoveListener(SwitchToShopWindow);
         _exitButton.onClick.RemoveListener(Application.Quit);
         if (PhotonService.Instance != null) _startGameButton.onClick.RemoveListener(PhotonService.Instance.ConnectLobby);
-        _startGameButton.onClick.RemoveListener(SwitchToLobbyWindow);
         _addFriendButton.onClick.RemoveListener(SwitchToAddFriendWindow);
     }
 

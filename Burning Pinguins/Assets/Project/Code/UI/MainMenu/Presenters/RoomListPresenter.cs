@@ -37,8 +37,17 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
 
         foreach (var roomInfo in roomList)
         {
-            _rooms.Add(new(roomInfo, _roomListContainer, _roomInfoContainerPrefab));
+            var currentRoomInfoContainer = InitRoomInfoContainer(roomInfo);
+            _rooms.Add(currentRoomInfoContainer);
         }
+    }
+
+    private RoomInfoContainer InitRoomInfoContainer(RoomInfo roomInfo)
+    {
+        var containerObject = Instantiate(_roomInfoContainerPrefab, _roomListContainer);
+        var roomInfoContainer = containerObject.GetComponent<RoomInfoContainer>();
+        roomInfoContainer.InitRoomContainer(roomInfo);
+        return roomInfoContainer;
     }
 
     private void ClearRoomListUi()

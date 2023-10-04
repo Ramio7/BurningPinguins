@@ -1,5 +1,3 @@
-using System;
-
 public static class Crypto
 {
     public static string CryptoXOR(string text, int key = 42)

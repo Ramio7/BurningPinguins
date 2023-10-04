@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class PhotonService : MonoBehaviourPunCallbacks
 {
+    public string AppVersion; 
     private TypedLobby _lobby = new("mainLobby", LobbyType.SqlLobby);
     private const string MAP_KEY = "C0";
     private const string RATING_KEY = "C1";
 
     public TypedLobby CurrentLobby { get => _lobby; private set => _lobby = value; }
 
-    public static Action OnRoomJoin;
     public static PhotonService Instance { get; private set; }
+
+    public event Action ConnectedToLobby;
 
     private void Awake()
     {
@@ -23,9 +25,8 @@ public class PhotonService : MonoBehaviourPunCallbacks
     public override void OnEnable()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.GameVersion = PhotonNetwork.AppVersion;
+        PhotonNetwork.GameVersion = AppVersion;
         PhotonNetwork.AddCallbackTarget(this);
-        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnDisable()
@@ -34,14 +35,25 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public async void ConnectLobby()
+    public void ConnectToPhotonServer()
     {
         PlayerAccountData accountData = PlayFabService.Instance.LoggedAccountData;
         PhotonNetwork.AuthValues = new();
         PhotonNetwork.NickName = accountData.AccountName;
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
+    public async void ConnectLobby()
+    {
+        if (!PhotonNetwork.IsConnectedAndReady)
+        {
+            Debug.Log("Something went wrong");
+            return;
+        }
         PhotonNetwork.JoinLobby(_lobby);
         await Task.Run(() => WaitLobbyJoinAsync());
         GetRoomList();
+        ConnectedToLobby?.Invoke();
     }
 
     public void JoinGame()
@@ -55,12 +67,7 @@ public class PhotonService : MonoBehaviourPunCallbacks
         Debug.LogError($"{message}. Code: {returnCode}");
     }
 
-    public override void OnJoinedRoom()
-    {
-        OnRoomJoin?.Invoke();
-    }
-
-    private Task WaitLobbyJoinAsync()
+    public Task WaitLobbyJoinAsync()
     {
         while (PhotonNetwork.NetworkClientState != ClientState.JoinedLobby) Task.Delay(1);
         return Task.CompletedTask;

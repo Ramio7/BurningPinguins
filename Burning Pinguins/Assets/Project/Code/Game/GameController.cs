@@ -1,5 +1,4 @@
 using Photon.Pun;
-using UnityEngine;
 
 public class GameController : MonoBehaviourPunCallbacks
 {
@@ -19,23 +18,25 @@ public class GameController : MonoBehaviourPunCallbacks
     private void SpawnPlayers()
     {
         foreach (var player in PhotonNetwork.CurrentRoom.Players) SpawnPlayer(PlayerPrefabsList.Instance.GetPlayerPrefab(player.Key));
+        PhotonNetwork.Destroy(PlayerPrefabsList.Instance.gameObject);
     }
 
     private void SpawnPlayer(PlayerView playerPrefab)
     {
-        var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+        var spawnPoint = LevelPresenter.Instance.GetEmptySpawnPoint();
+        var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);
         newPlayer.GetComponent<CameraMover>().StartCameraFollowing();
-    }
-
-    public void RevivePlayer(PlayerView playerToRevive)
-    {
-        playerToRevive.gameObject.SetActive(true);
-        playerToRevive.GetComponent<CameraMover>().StopCameraFollowing();
     }
 
     public void ShutDownPlayer(PlayerView playerToShutDown)
     {
         playerToShutDown.GetComponent<CameraMover>().StopCameraFollowing();
         playerToShutDown.gameObject.SetActive(false);
+    }
+
+    public void RevivePlayer(PlayerView playerToRevive)
+    {
+        playerToRevive.gameObject.SetActive(true);
+        playerToRevive.GetComponent<CameraMover>().StartCameraFollowing();
     }
 }

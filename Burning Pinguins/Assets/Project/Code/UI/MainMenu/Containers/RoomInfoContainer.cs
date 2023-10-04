@@ -1,7 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 public class RoomInfoContainer : MonoBehaviourPunCallbacks
@@ -10,11 +9,13 @@ public class RoomInfoContainer : MonoBehaviourPunCallbacks
     private Button _containerButton;
 
     public RoomInfo RoomInfo { get => _roomInfo; private set => _roomInfo = value; }
+    public Button Container { get => _containerButton; }
 
-    public RoomInfoContainer(RoomInfo roomInfo, Transform uiContainer, Button roomInfoContainerPrefab)
+    public void InitRoomContainer(RoomInfo roomInfo)
     {
-        InitRoomContainer(roomInfo, uiContainer, roomInfoContainerPrefab);
-        UpdateRoomInfoText();
+        _roomInfo = roomInfo;
+        _containerButton = gameObject.GetComponent<Button>();
+        _containerButton.onClick.AddListener(JoinRoom);
     }
 
     public void OnDestroy()
@@ -25,13 +26,6 @@ public class RoomInfoContainer : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer) => UpdateRoomInfoText();
 
     public override void OnPlayerLeftRoom(Player otherPlayer) => UpdateRoomInfoText();
-
-    private void InitRoomContainer(RoomInfo roomInfo, Transform uiContainer, Button roomInfoContainerPrefab)
-    {
-        _roomInfo = roomInfo;
-        _containerButton = Instantiate(roomInfoContainerPrefab, uiContainer);
-        _containerButton.onClick.AddListener(JoinRoom);
-    }
 
     private void JoinRoom() => PhotonNetwork.JoinRoom(_roomInfo.Name);
 

@@ -2,7 +2,6 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 {
@@ -10,16 +9,20 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     [SerializeField] private Button _leaveRoomButton;
     [SerializeField] private Button _roomnameButton;
     [SerializeField] private TMP_Text _roomname;
+    [SerializeField] private PlayerPrefabsList _prefabListPrefab;
 
-    [Inject] private readonly PlayerView _playerPrefab;
+    private PlayerView _playerPrefab;
+
+    public PlayerView PlayerPrefab { get => _playerPrefab; private set => _playerPrefab = value; }
 
     public static Canvas Canvas;
+    public static RoomWindowPresenter Instance;
 
     public override void OnEnable()
     {
+        Instance = this;
         Canvas = GetComponent<Canvas>();
 
-        InitRoom();
         SubscribeButtons();
 
         PhotonNetwork.AddCallbackTarget(this);
@@ -27,27 +30,12 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
 
     public override void OnDisable()
     {
+        Instance = null;
         Canvas = null;
 
         UnsubscribeButtons();
 
         PhotonNetwork.RemoveCallbackTarget(this);
-    }
-
-    private void InitRoom()
-    {
-        _roomname.text = PhotonNetwork.CurrentRoom.Name;
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-            _startTheGameButton.interactable = true;
-            PhotonNetwork.InstantiateRoomObject("PlayerPrefabList", Vector3.zero, Quaternion.identity);
-        }
-        else
-        {
-            _startTheGameButton.interactable = false;
-            PlayerPrefabsList.Instance.AddPlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber, _playerPrefab);
-        }
     }
 
     public void SubscribeButtons()
@@ -66,6 +54,8 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         _roomnameButton.onClick.RemoveListener(CopyRoomnameToClipboard);
     }
 
+    public void SetPlayerPrefab(PlayerView playerPrefab) => PlayerPrefab = playerPrefab;
+
     private void LeaveCurrentRoom()
     {
         PlayerPrefabsList.Instance.DeletePlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber);
@@ -81,4 +71,27 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     }
 
     private void CopyRoomnameToClipboard() => GUIUtility.systemCopyBuffer = _roomname.text;
+
+    public override void OnJoinedRoom()
+    {
+        InitRoom();
+    }
+
+    private void InitRoom()
+    {
+        _roomname.text = PhotonNetwork.CurrentRoom.Name;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _startTheGameButton.interactable = true;
+            PhotonNetwork.Instantiate(_prefabListPrefab.name, Vector3.zero, Quaternion.identity);
+            PlayerPrefabsList.Instance.AddPlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber, PlayerPrefab);
+        }
+        else
+        {
+            _startTheGameButton.interactable = false;
+            PlayerPrefabsList.Instance = FindObjectOfType<PlayerPrefabsList>();
+            PlayerPrefabsList.Instance.AddPlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber, PlayerPrefab);
+        }
+    }
 }
