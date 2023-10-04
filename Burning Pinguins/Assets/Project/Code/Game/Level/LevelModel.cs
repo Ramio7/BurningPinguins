@@ -1,18 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelModel : MonoBehaviour
+public class LevelModel
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform GetEmptySpawnPointTransform(List<SpawnPoint> spawnPoints)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var freeSpawns = new List<SpawnPoint>();
+        foreach (var spawnPoint in spawnPoints)
+        {
+            if (!spawnPoint.IsOccupied) freeSpawns.Add(spawnPoint);
+        }
+        var index = Random.Range(0, freeSpawns.Count);
+        return spawnPoints[index].transform;
     }
 }

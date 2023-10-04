@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
+using Zenject;
 
-public class LevelPresenter : MonoBehaviour
+[RequireComponent(typeof(LevelView))]
+public class LevelPresenter : MonoBehaviour, IPunObservable
 {
-    // Start is called before the first frame update
-    void Start()
+    [Inject] private readonly LevelModel _levelModel;
+    private LevelView _levelView;
+
+    public static LevelPresenter Instance;
+
+    private void OnEnable()
     {
-        
+        Instance = this;
+        _levelView = GetComponent<LevelView>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public Transform GetEmptySpawnPoint() => _levelModel.GetEmptySpawnPointTransform(_levelView.SpawnPoints);
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        
+        if (stream.IsWriting)
+        {
+            foreach (var spawnPoint in _levelView.SpawnPoints)
+            {
+                stream.SendNext(spawnPoint.IsOccupied);
+            }
+        }
+        else
+        {
+            foreach (var spawnPoint in _levelView.SpawnPoints)
+            {
+                spawnPoint.IsOccupied = (bool)stream.ReceiveNext();
+            }
+        }
     }
 }

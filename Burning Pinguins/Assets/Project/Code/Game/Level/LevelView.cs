@@ -1,18 +1,11 @@
-using System.Collections;
+using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<SpawnPoint> _spawnPoints;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<SpawnPoint> SpawnPoints { get => _spawnPoints; }
 }
