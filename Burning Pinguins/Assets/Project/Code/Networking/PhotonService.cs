@@ -15,6 +15,7 @@ public class PhotonService : MonoBehaviourPunCallbacks
 
     public static PhotonService Instance { get; private set; }
 
+    public event Action ConnectedToServer;
     public event Action ConnectedToLobby;
 
     private void Awake()
@@ -35,21 +36,18 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public void ConnectToPhotonServer()
+    public async void ConnectToPhotonServer()
     {
         PlayerAccountData accountData = PlayFabService.Instance.LoggedAccountData;
         PhotonNetwork.AuthValues = new();
         PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.ConnectUsingSettings();
+        await Task.Run(() => WaitServerJoinAsync());
+        ConnectedToServer?.Invoke();
     }
 
     public async void ConnectLobby()
     {
-        if (!PhotonNetwork.IsConnectedAndReady)
-        {
-            Debug.Log("Something went wrong");
-            return;
-        }
         PhotonNetwork.JoinLobby(_lobby);
         await Task.Run(() => WaitLobbyJoinAsync());
         GetRoomList();
@@ -65,6 +63,12 @@ public class PhotonService : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.LogError($"{message}. Code: {returnCode}");
+    }
+
+    public Task WaitServerJoinAsync()
+    {
+        while (PhotonNetwork.NetworkClientState != ClientState.ConnectedToMasterServer) Task.Delay(1);
+        return Task.CompletedTask;
     }
 
     public Task WaitLobbyJoinAsync()

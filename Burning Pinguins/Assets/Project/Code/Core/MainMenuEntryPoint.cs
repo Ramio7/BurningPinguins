@@ -37,7 +37,7 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
 
     private void LoadPlayerPrefab()
     {
-        PlayFabService.Instance.PlayerPrefab = (PlayerView)Resources.Load("Game/PlayerPrefab");
+        PlayFabService.Instance.PlayerPrefab = Resources.Load<PlayerView>("PlayerPrefab");
         JsonData<PlayerAccountData> accountData = new();
         accountData.Save(PlayFabService.Instance.LoggedAccountData, PlayFabService.AccountDataPath);
     }

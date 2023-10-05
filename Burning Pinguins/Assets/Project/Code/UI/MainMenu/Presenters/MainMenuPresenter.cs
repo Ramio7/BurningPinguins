@@ -24,6 +24,7 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         Canvas = GetComponent<Canvas>();
         SubscribeButtons();
         PlayFabService.Instance.AccountLoginCallback += SetSwitchableButtonsActive;
+        PhotonService.Instance.ConnectedToServer += SetStartButtonActive;
         PhotonService.Instance.ConnectedToLobby += SwitchToLobbyWindow;
     }
 
@@ -33,6 +34,11 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
         Canvas = null;
         UnsubscribeButtons();
         if (PlayFabService.Instance != null) PlayFabService.Instance.AccountLoginCallback -= SetSwitchableButtonsActive;
+        if (PhotonService.Instance != null)
+        {
+            PhotonService.Instance.ConnectedToServer -= SetStartButtonActive;
+            PhotonService.Instance.ConnectedToLobby -= SwitchToLobbyWindow;
+        }
     }
 
     public void SubscribeButtons()
@@ -97,5 +103,10 @@ public class MainMenuPresenter : MonoBehaviour, IUiWindow
     {
         Canvas.enabled = false;
         AddFriendWindowPresenter.Canvas.enabled = true;
+    }
+
+    private void SetStartButtonActive() 
+    {
+        _startGameButton.interactable = true;
     }
 }

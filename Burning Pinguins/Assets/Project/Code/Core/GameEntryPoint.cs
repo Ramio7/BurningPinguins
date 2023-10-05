@@ -25,9 +25,6 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
             PhotonNetwork.InstantiateRoomObject(_gameControllerPrefab.name, Vector3.zero, Quaternion.identity);
         }
 
-        if (photonView.IsMine)
-        {
-            Instantiate(_playerOverviewPrefab, _uiContainer);
-        }
+        Instantiate(_playerOverviewPrefab, _uiContainer);
     }
 }
