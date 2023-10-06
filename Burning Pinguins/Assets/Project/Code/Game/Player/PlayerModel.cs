@@ -1,16 +1,22 @@
-using System;
-
-public class PlayerModel : IDisposable
+public static class PlayerModel
 {
-    public void CatchBall(IBall ball)
+    public static void CatchBall(IBallView otherPlayerBall)
     {
-        ball.MeshRenderer.enabled = false;
-        ball.Collider.enabled = false;
-        ball.Timer.Stop();
+        var otherPlayer = otherPlayerBall.MyPlayer;
+        otherPlayer.PlayerView.IsWithBall = false;
+
+        otherPlayerBall.MeshRenderer.enabled = false;
+        otherPlayerBall.Collider.enabled = false;
+        otherPlayerBall.Timer.Stop();
     }
 
-    public void Dispose()
+    public static void GiveBall(IPlayerView otherPlayer)
     {
-        throw new NotImplementedException();
+        otherPlayer.IsWithBall = true;
+
+        var otherBall = otherPlayer.Ball;
+        otherBall.MeshRenderer.enabled = true;
+        otherBall.Collider.enabled = true;
+        otherBall.Timer.Start();
     }
 }
