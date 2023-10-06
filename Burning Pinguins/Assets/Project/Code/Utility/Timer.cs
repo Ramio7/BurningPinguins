@@ -1,40 +1,56 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class Timer : IDisposable
 {
-    private readonly float _timerDuration;
-    private float _timerTarget;
+    protected float _timerDuration;
+    protected Task _countdown;
+    protected float _timerTarget;
+    protected CancellationTokenSource _cancellationTokenSource;
+    protected CancellationToken _cancellationToken;
 
-    private Task _countdown;
+    private readonly Action _timerCallback;
 
     public Timer(float timerDuration)
     {
         _timerDuration = timerDuration;
+        SetCancellationToken();
     }
 
-    public async void Start()
+    public Timer(float timerDuration, Action timerCallback)
+    {
+        _timerDuration = timerDuration;
+        _timerCallback = timerCallback;
+        SetCancellationToken();
+    }
+
+    public virtual async void Start()
     {
         _timerTarget = Time.time + _timerDuration;
         _countdown = CountdownAsync();
-        await Task.Run(() => _countdown);
+        await Task.Run(() => _countdown, _cancellationToken);
+        if (_countdown.IsCompletedSuccessfully) _timerCallback?.Invoke();
     }
 
-    public void Stop()
+    public void Stop() => _cancellationTokenSource.Cancel();
+
+    public void Dispose()
     {
-        _countdown.Dispose();
+        _cancellationTokenSource.Dispose();
+        _countdown?.Dispose();
     }
 
-    private Task CountdownAsync()
+    protected Task CountdownAsync()
     {
         while (_timerTarget >= Time.time) return Task.Delay(1);
         return Task.FromResult(true);
     }
 
-    public void Dispose()
+    protected void SetCancellationToken()
     {
-        _countdown?.Dispose();
-        _countdown = null;
+        _cancellationTokenSource = new();
+        _cancellationToken = _cancellationTokenSource.Token;
     }
 }

@@ -25,6 +25,12 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
             PhotonNetwork.InstantiateRoomObject(_gameControllerPrefab.name, Vector3.zero, Quaternion.identity);
         }
 
+        InstantiatePlayerObjects();
+    }
+
+    private void InstantiatePlayerObjects()
+    {
         Instantiate(_playerOverviewPrefab, _uiContainer);
+        GameController.SpawnPlayer(PlayFabService.Instance.PlayerPrefab);
     }
 }

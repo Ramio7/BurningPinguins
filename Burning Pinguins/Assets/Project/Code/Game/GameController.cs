@@ -1,42 +1,89 @@
 using Photon.Pun;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class GameController : MonoBehaviourPunCallbacks
+public class GameController : MonoBehaviour
 {
-    public static GameController Instance;
+    [SerializeField] private float _reviveTimerDuration;
 
-    public override void OnEnable()
+    public static GameController Instance;
+    private static ReviveTimer ReviveTimer;
+    private static List<PlayerView> Players = new();
+
+    private void OnEnable()
     {
         Instance = this;
-        SpawnPlayers();
+        ReviveTimer = new(_reviveTimerDuration, RevivePlayer);
     }
 
-    public override void OnDisable()
+    private void OnDisable()
     {
         Instance = null;
     }
 
-    private void SpawnPlayers()
+    public static void SpawnPlayer(PlayerView playerPrefab)
     {
-        foreach (var player in PhotonNetwork.CurrentRoom.Players) SpawnPlayer(PlayerPrefabsList.Instance.GetPlayerPrefab(player.Key));
-        PhotonNetwork.Destroy(PlayerPrefabsList.Instance.gameObject);
+        GameObject newPlayer = InstantiatePlayerObject(playerPrefab);
+        InitPlayer(newPlayer);
     }
 
-    private void SpawnPlayer(PlayerView playerPrefab)
+    private static GameObject InstantiatePlayerObject(PlayerView playerPrefab)
     {
         var spawnPoint = LevelPresenter.Instance.GetEmptySpawnPoint();
         var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);
+        return newPlayer;
+    }
+
+    private static void InitPlayer(GameObject newPlayer)
+    {
+        AddPLayerViewToList(newPlayer);
+        InitPlayerPresenter(newPlayer);
+    }
+
+    private static void AddPLayerViewToList(GameObject newPlayer)
+    {
+        Players.Add(newPlayer.GetComponent<PlayerView>());
+    }
+
+    private static void InitPlayerPresenter(GameObject newPlayer)
+    {
         newPlayer.GetComponent<CameraMover>().StartCameraFollowing();
+        var playerPresenter = newPlayer.GetComponent<PlayerPresenter>();
+        playerPresenter.OnPlayerShutDown += ShutDownPlayer;
     }
 
-    public void ShutDownPlayer(PlayerView playerToShutDown)
+    private static void ShutDownPlayer(IPlayerView playerToShutDown)
     {
-        playerToShutDown.GetComponent<CameraMover>().StopCameraFollowing();
-        playerToShutDown.gameObject.SetActive(false);
+        DeinitPlayer(playerToShutDown);
+        StartReviveCountdown(playerToShutDown);
     }
 
-    public void RevivePlayer(PlayerView playerToRevive)
+    private static void DeinitPlayer(IPlayerView playerToShutDown)
     {
-        playerToRevive.gameObject.SetActive(true);
-        playerToRevive.GetComponent<CameraMover>().StartCameraFollowing();
+        playerToShutDown.GameObject.GetComponent<CameraMover>().StopCameraFollowing();
+        playerToShutDown.GameObject.SetActive(false);
+    }
+
+    private static void StartReviveCountdown(IPlayerView playerToShutDown)
+    {
+        ReviveTimer.Start(playerToShutDown);
+    }
+
+    private void RevivePlayer(IPlayerView playerToRevive)
+    {
+        MovePlayerToNewSpawnPoint(playerToRevive);
+        ReinitPlayer(playerToRevive);
+    }
+
+    private static void MovePlayerToNewSpawnPoint(IPlayerView playerToRevive)
+    {
+        var spawnPoint = LevelPresenter.Instance.GetEmptySpawnPoint();
+        playerToRevive.GameObject.transform.position = spawnPoint.position;
+    }
+
+    private static void ReinitPlayer(IPlayerView playerToRevive)
+    {
+        playerToRevive.GameObject.SetActive(true);
+        playerToRevive.GameObject.GetComponent<CameraMover>().StartCameraFollowing();
     }
 }

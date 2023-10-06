@@ -15,7 +15,7 @@ D:/Repos/Unity_repo/BurningPinguins/Burning Pinguins
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-64312
+52320
 Successfully changed project path to: D:/Repos/Unity_repo/BurningPinguins/Burning Pinguins
 D:/Repos/Unity_repo/BurningPinguins/Burning Pinguins
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ D:/Repos/Unity_repo/BurningPinguins/Burning Pinguins
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [16208] Host "[IP] 192.168.0.26 [Port] 0 [Flags] 2 [Guid] 2009263568 [EditorId] 2009263568 [Version] 1048832 [Id] WindowsEditor(7,RamRad-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [4116] Host "[IP] 192.168.0.26 [Port] 0 [Flags] 2 [Guid] 3494442081 [EditorId] 3494442081 [Version] 1048832 [Id] WindowsEditor(7,RamRad-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [16208] Host "[IP] 192.168.0.26 [Port] 0 [Flags] 2 [Guid] 2009263568 [EditorId] 2009263568 [Version] 1048832 [Id] WindowsEditor(7,RamRad-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [4116] Host "[IP] 192.168.0.26 [Port] 0 [Flags] 2 [Guid] 3494442081 [EditorId] 3494442081 [Version] 1048832 [Id] WindowsEditor(7,RamRad-PC) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 527.65 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 193.73 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.27f1 (ca3ffb99bcc6)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.27f1/Editor/Data/Resources/UnitySubsystems
@@ -67,50 +67,50 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.27f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.27f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.27f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56600
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56208
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.27f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.015897 seconds.
+Registered in 0.015001 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 335.93 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 250.26 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.717 seconds
+- Completed reload, in  1.237 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1717ms)
-		BeginReloadAssembly (295ms)
+	ReloadAssembly (1238ms)
+		BeginReloadAssembly (180ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (1190ms)
-			LoadAssemblies (291ms)
+		EndReloadAssembly (883ms)
+			LoadAssemblies (176ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (216ms)
+			SetupTypeCache (154ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (59ms)
-			SetupLoadedEditorAssemblies (793ms)
+			RebuildScriptCaches (49ms)
+			SetupLoadedEditorAssemblies (592ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (27ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (336ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (250ms)
 				BeforeProcessingInitializeOnLoad (3ms)
-				ProcessInitializeOnLoadAttributes (308ms)
-				ProcessInitializeOnLoadMethodAttributes (117ms)
+				ProcessInitializeOnLoadAttributes (237ms)
+				ProcessInitializeOnLoadMethodAttributes (86ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.030445 seconds.
+Registered in 0.026796 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 201.55 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 194.44 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
@@ -139,43 +139,43 @@ UnityEngine.Debug:LogError (object)
 UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
 
 Mono: successfully reloaded assembly
-- Completed reload, in  4.044 seconds
+- Completed reload, in  3.451 seconds
 Domain Reload Profiling:
-	ReloadAssembly (4045ms)
-		BeginReloadAssembly (306ms)
+	ReloadAssembly (3452ms)
+		BeginReloadAssembly (253ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (11ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (3541ms)
-			LoadAssemblies (324ms)
+		EndReloadAssembly (3024ms)
+			LoadAssemblies (251ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (661ms)
+			SetupTypeCache (551ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (155ms)
-			SetupLoadedEditorAssemblies (2396ms)
+			RebuildScriptCaches (125ms)
+			SetupLoadedEditorAssemblies (2091ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (9ms)
+				InitializePlatformSupportModulesInManaged (12ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (202ms)
-				BeforeProcessingInitializeOnLoad (190ms)
-				ProcessInitializeOnLoadAttributes (1928ms)
-				ProcessInitializeOnLoadMethodAttributes (46ms)
-				AfterProcessingInitializeOnLoad (20ms)
+				RefreshPlugins (195ms)
+				BeforeProcessingInitializeOnLoad (173ms)
+				ProcessInitializeOnLoadAttributes (1659ms)
+				ProcessInitializeOnLoadMethodAttributes (34ms)
+				AfterProcessingInitializeOnLoad (18ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (16ms)
+			AwakeInstancesAfterBackupRestoration (11ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.13 seconds
-Refreshing native plugins compatible for Editor in 2.50 ms, found 4 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
+Refreshing native plugins compatible for Editor in 1.29 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5359 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 73 unused Assets / (1.6 MB). Loaded Objects now: 5805.
-Memory consumption went from 200.8 MB to 199.2 MB.
-Total: 25.123000 ms (FindLiveObjects: 1.170000 ms CreateObjectMapping: 0.625100 ms MarkObjects: 22.470600 ms  DeleteObjects: 0.853500 ms)
+Unloading 5361 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 73 unused Assets / (1.6 MB). Loaded Objects now: 5807.
+Memory consumption went from 200.7 MB to 199.1 MB.
+Total: 5.353900 ms (FindLiveObjects: 0.606200 ms CreateObjectMapping: 0.197400 ms MarkObjects: 4.038400 ms  DeleteObjects: 0.510000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -190,29 +190,385 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1476.612225 seconds.
-  path: Assets/Plugins/Sci-Fi Styled Modular Pack/Materials/Palletes/base color.mat
-  artifactKey: Guid(10de6384af0c3b54e8166f9c3f936e88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Sci-Fi Styled Modular Pack/Materials/Palletes/base color.mat using Guid(10de6384af0c3b54e8166f9c3f936e88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cebd83af43ace3f764f95dd71b6ee3a2') in 1.388078 seconds 
+  Time since last request: 3827.246761 seconds.
+  path: Assets/Project/Resources/Prefabs/MainMenu/MainMenuUI.prefab
+  artifactKey: Guid(9e79857e6041ef74a959fe3d53974536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Resources/Prefabs/MainMenu/MainMenuUI.prefab using Guid(9e79857e6041ef74a959fe3d53974536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6fc01cf6f518ab5986823ee6e1b5a17') in 0.224674 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.024330 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.88 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+CreateSerializedAsset is not supported while importing out-of-process
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+PlayFab.PfEditor.PlayFabEditorPrefsSO:get_Instance () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Utils/PlayFabEditorPrefsSO.cs:38)
+PlayFab.PfEditor.SubMenuComponent:RegisterMenuItem (string,System.Action) (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Components/SubMenuComponent.cs:42)
+PlayFab.PfEditor.PlayFabEditorDataMenu:RegisterMenu () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Panels/PlayFabEditorDataMenu.cs:93)
+PlayFab.PfEditor.PlayFabEditorDataMenu:.cctor () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Panels/PlayFabEditorDataMenu.cs:74)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Utils/PlayFabEditorPrefsSO.cs line 38]
+
+UnityEngine.UnityException: Creating asset at path Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset failed.
+  at (wrapper managed-to-native) UnityEditor.AssetDatabase.CreateAsset(UnityEngine.Object,string)
+  at PlayFab.PfEditor.PlayFabEditorPrefsSO.get_Instance () [0x0009d] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Utils\PlayFabEditorPrefsSO.cs:38 
+  at PlayFab.PfEditor.SubMenuComponent.RegisterMenuItem (System.String n, System.Action m) [0x00017] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Components\SubMenuComponent.cs:42 
+  at PlayFab.PfEditor.PlayFabEditorDataMenu.RegisterMenu () [0x0001c] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Panels\PlayFabEditorDataMenu.cs:93 
+  at PlayFab.PfEditor.PlayFabEditorDataMenu..cctor () [0x00043] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Panels\PlayFabEditorDataMenu.cs:74 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+Mono: successfully reloaded assembly
+- Completed reload, in  3.286 seconds
+Domain Reload Profiling:
+	ReloadAssembly (3287ms)
+		BeginReloadAssembly (335ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (10ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (79ms)
+		EndReloadAssembly (2777ms)
+			LoadAssemblies (284ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (584ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (97ms)
+			SetupLoadedEditorAssemblies (1808ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (145ms)
+				ProcessInitializeOnLoadAttributes (1584ms)
+				ProcessInitializeOnLoadMethodAttributes (43ms)
+				AfterProcessingInitializeOnLoad (20ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 4.48 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5285 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 55 unused Assets / (1.6 MB). Loaded Objects now: 5814.
+Memory consumption went from 193.0 MB to 191.4 MB.
+Total: 6.677900 ms (FindLiveObjects: 0.597900 ms CreateObjectMapping: 0.163100 ms MarkObjects: 5.392100 ms  DeleteObjects: 0.523000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.027004 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.12 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+CreateSerializedAsset is not supported while importing out-of-process
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+PlayFab.PfEditor.PlayFabEditorPrefsSO:get_Instance () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Utils/PlayFabEditorPrefsSO.cs:38)
+PlayFab.PfEditor.SubMenuComponent:RegisterMenuItem (string,System.Action) (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Components/SubMenuComponent.cs:42)
+PlayFab.PfEditor.PlayFabEditorDataMenu:RegisterMenu () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Panels/PlayFabEditorDataMenu.cs:93)
+PlayFab.PfEditor.PlayFabEditorDataMenu:.cctor () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Panels/PlayFabEditorDataMenu.cs:74)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Utils/PlayFabEditorPrefsSO.cs line 38]
+
+UnityEngine.UnityException: Creating asset at path Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset failed.
+  at (wrapper managed-to-native) UnityEditor.AssetDatabase.CreateAsset(UnityEngine.Object,string)
+  at PlayFab.PfEditor.PlayFabEditorPrefsSO.get_Instance () [0x0009d] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Utils\PlayFabEditorPrefsSO.cs:38 
+  at PlayFab.PfEditor.SubMenuComponent.RegisterMenuItem (System.String n, System.Action m) [0x00017] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Components\SubMenuComponent.cs:42 
+  at PlayFab.PfEditor.PlayFabEditorDataMenu.RegisterMenu () [0x0001c] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Panels\PlayFabEditorDataMenu.cs:93 
+  at PlayFab.PfEditor.PlayFabEditorDataMenu..cctor () [0x00043] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Panels\PlayFabEditorDataMenu.cs:74 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+Mono: successfully reloaded assembly
+- Completed reload, in  3.023 seconds
+Domain Reload Profiling:
+	ReloadAssembly (3024ms)
+		BeginReloadAssembly (311ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (11ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (69ms)
+		EndReloadAssembly (2548ms)
+			LoadAssemblies (267ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (530ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (77ms)
+			SetupLoadedEditorAssemblies (1684ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (9ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (120ms)
+				ProcessInitializeOnLoadAttributes (1486ms)
+				ProcessInitializeOnLoadMethodAttributes (41ms)
+				AfterProcessingInitializeOnLoad (25ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (16ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 4.34 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5285 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 49 unused Assets / (1.6 MB). Loaded Objects now: 5820.
+Memory consumption went from 193.0 MB to 191.5 MB.
+Total: 5.368000 ms (FindLiveObjects: 0.561500 ms CreateObjectMapping: 0.346100 ms MarkObjects: 3.988000 ms  DeleteObjects: 0.470600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.027351 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.73 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+CreateSerializedAsset is not supported while importing out-of-process
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+PlayFab.PfEditor.PlayFabEditorPrefsSO:get_Instance () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Utils/PlayFabEditorPrefsSO.cs:38)
+PlayFab.PfEditor.SubMenuComponent:RegisterMenuItem (string,System.Action) (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Components/SubMenuComponent.cs:42)
+PlayFab.PfEditor.PlayFabEditorDataMenu:RegisterMenu () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Panels/PlayFabEditorDataMenu.cs:93)
+PlayFab.PfEditor.PlayFabEditorDataMenu:.cctor () (at Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Panels/PlayFabEditorDataMenu.cs:74)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Assets/Plugins/PlayFabEditorExtensions/Editor/Scripts/Utils/PlayFabEditorPrefsSO.cs line 38]
+
+UnityEngine.UnityException: Creating asset at path Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset failed.
+  at (wrapper managed-to-native) UnityEditor.AssetDatabase.CreateAsset(UnityEngine.Object,string)
+  at PlayFab.PfEditor.PlayFabEditorPrefsSO.get_Instance () [0x0009d] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Utils\PlayFabEditorPrefsSO.cs:38 
+  at PlayFab.PfEditor.SubMenuComponent.RegisterMenuItem (System.String n, System.Action m) [0x00017] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Components\SubMenuComponent.cs:42 
+  at PlayFab.PfEditor.PlayFabEditorDataMenu.RegisterMenu () [0x0001c] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Panels\PlayFabEditorDataMenu.cs:93 
+  at PlayFab.PfEditor.PlayFabEditorDataMenu..cctor () [0x00043] in D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Assets\Plugins\PlayFabEditorExtensions\Editor\Scripts\Panels\PlayFabEditorDataMenu.cs:74 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+Mono: successfully reloaded assembly
+- Completed reload, in  3.002 seconds
+Domain Reload Profiling:
+	ReloadAssembly (3003ms)
+		BeginReloadAssembly (339ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (11ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (82ms)
+		EndReloadAssembly (2503ms)
+			LoadAssemblies (269ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (505ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (80ms)
+			SetupLoadedEditorAssemblies (1663ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (125ms)
+				ProcessInitializeOnLoadAttributes (1458ms)
+				ProcessInitializeOnLoadMethodAttributes (43ms)
+				AfterProcessingInitializeOnLoad (19ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (17ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 4.19 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5285 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 49 unused Assets / (1.6 MB). Loaded Objects now: 5826.
+Memory consumption went from 193.0 MB to 191.5 MB.
+Total: 6.014700 ms (FindLiveObjects: 0.616200 ms CreateObjectMapping: 0.329900 ms MarkObjects: 4.416100 ms  DeleteObjects: 0.651100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 13.473589 seconds.
-  path: Assets/Plugins/Sci-Fi Styled Modular Pack/Prefabs/Floors/floor_2.prefab
-  artifactKey: Guid(6812e31ceb91fc04da03973c6b1054cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Sci-Fi Styled Modular Pack/Prefabs/Floors/floor_2.prefab using Guid(6812e31ceb91fc04da03973c6b1054cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '805587a0a15816e76466a5b737c55a11') in 0.389253 seconds 
+  Time since last request: 598.401048 seconds.
+  path: Assets/Project/Code/Networking/Resources/PlayerPrefab.prefab
+  artifactKey: Guid(090332072b6734e43b9a697ab8c25a4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Networking/Resources/PlayerPrefab.prefab using Guid(090332072b6734e43b9a697ab8c25a4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '711469add7ab7aa59fbec4a982682781') in 0.132057 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Plugins/Sci-Fi Styled Modular Pack/Prefabs/Floors/floor_3.prefab
-  artifactKey: Guid(a185d2c8149cc7d45a8bc91951812dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Sci-Fi Styled Modular Pack/Prefabs/Floors/floor_3.prefab using Guid(a185d2c8149cc7d45a8bc91951812dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd007c464b0ecaa3828d05906ac5a6f7f') in 0.034691 seconds 
+  Time since last request: 4409.277234 seconds.
+  path: Assets/Project/Code/Networking/Resources/PlayerPrefab.prefab
+  artifactKey: Guid(090332072b6734e43b9a697ab8c25a4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Networking/Resources/PlayerPrefab.prefab using Guid(090332072b6734e43b9a697ab8c25a4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '700202d1a789b3ba1c4c80c479d5d169') in 0.140141 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000046 seconds.
-  path: Assets/Plugins/Sci-Fi Styled Modular Pack/Prefabs/Floors/floor_6.prefab
-  artifactKey: Guid(3845c7234a0ed4843ba4e38e2404f54d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Sci-Fi Styled Modular Pack/Prefabs/Floors/floor_6.prefab using Guid(3845c7234a0ed4843ba4e38e2404f54d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b47ad1b1e37b8547c63089687f040512') in 0.027306 seconds 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0
+  Time since last request: 83.526485 seconds.
+  path: Assets/Project/Code/Networking/Resources/PlayerPrefab.prefab
+  artifactKey: Guid(090332072b6734e43b9a697ab8c25a4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Networking/Resources/PlayerPrefab.prefab using Guid(090332072b6734e43b9a697ab8c25a4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00f4640c0ee18515db095e0e8045ca94') in 0.018897 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 200.643668 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62179a9d206c26fb72c977011428e810') in 0.014554 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 21.196969 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18b2a4f832cad66d19db966c0be888db') in 0.003153 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 617.412533 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45e6cb4def56c9af625a1a003870e7ad') in 0.002686 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 188.903046 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f6f71fa335e4ddf63514e937a2371b0') in 0.003201 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 50.228230 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e517b26dbc27e3be641745602687419e') in 0.002737 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 210.167204 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0f31235bdc1d99e2fd78cd1c7b27699') in 0.003090 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 96.136546 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3655e4cee97252562fe43a0ccc3bc57') in 0.003348 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 43.227076 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3325067cad84ec5a2bcd588108535fab') in 0.003125 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 125.755248 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f3b25827e496f6842ec43ff0316248d') in 0.002834 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 24.801406 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73fd0f847d094f515fa74bfef0d00ff5') in 0.003253 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 368.131423 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e80e40d7e47bd32a172257e55dc9d52') in 0.002948 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 143.849493 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '454bd4b380e5aac1bb328411dedbb0ed') in 0.003451 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 27.533066 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '701d7300881813c410cce0e74143cdf9') in 0.002848 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 23.086176 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21a870027448101a3c40bf2b2d9bb12e') in 0.003181 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 175.779913 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fd82fd37dad1f1cba1a134075b51044') in 0.002897 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 34.430934 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '784f2d7ad8c1793ca32abfe48c73967f') in 0.003661 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 83.543482 seconds.
+  path: Assets/Project/Code/Utility/Timer.cs
+  artifactKey: Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Project/Code/Utility/Timer.cs using Guid(b9fb5600ea516f3499e5d7e4df783572) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d6e019d5348a96d49e7ec8852155a7b') in 0.003432 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.031122 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Repos\Unity_repo\BurningPinguins\Burning Pinguins\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.94 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server

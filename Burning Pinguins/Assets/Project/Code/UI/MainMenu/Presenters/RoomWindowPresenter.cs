@@ -9,11 +9,6 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
     [SerializeField] private Button _leaveRoomButton;
     [SerializeField] private Button _roomnameButton;
     [SerializeField] private TMP_Text _roomname;
-    [SerializeField] private PlayerPrefabsList _prefabListPrefab;
-
-    private PlayerView _playerPrefab;
-
-    public PlayerView PlayerPrefab { get => _playerPrefab; private set => _playerPrefab = value; }
 
     public static Canvas Canvas;
     public static RoomWindowPresenter Instance;
@@ -54,11 +49,8 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         _roomnameButton.onClick.RemoveListener(CopyRoomnameToClipboard);
     }
 
-    public void SetPlayerPrefab(PlayerView playerPrefab) => PlayerPrefab = playerPrefab;
-
     private void LeaveCurrentRoom()
     {
-        PlayerPrefabsList.Instance.DeletePlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber);
         PhotonNetwork.LeaveRoom(false);
     }
 
@@ -84,14 +76,10 @@ public class RoomWindowPresenter : MonoBehaviourPunCallbacks, IUiWindow
         if (PhotonNetwork.IsMasterClient)
         {
             _startTheGameButton.interactable = true;
-            PhotonNetwork.Instantiate(_prefabListPrefab.name, Vector3.zero, Quaternion.identity);
-            PlayerPrefabsList.Instance.AddPlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber, PlayerPrefab);
         }
         else
         {
             _startTheGameButton.interactable = false;
-            PlayerPrefabsList.Instance = FindObjectOfType<PlayerPrefabsList>();
-            PlayerPrefabsList.Instance.AddPlayerPrefab(PhotonNetwork.LocalPlayer.ActorNumber, PlayerPrefab);
         }
     }
 }
