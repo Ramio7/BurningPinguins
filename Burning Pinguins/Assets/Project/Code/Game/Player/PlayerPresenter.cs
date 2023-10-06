@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -12,5 +10,10 @@ public class PlayerPresenter : MonoBehaviour
     private void Awake()
     {
         _playerView = GetComponent<PlayerView>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 }

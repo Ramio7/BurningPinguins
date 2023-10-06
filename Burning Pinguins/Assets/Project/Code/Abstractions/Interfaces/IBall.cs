@@ -2,6 +2,8 @@ using UnityEngine;
 
 public interface IBall
 {
-    public GameObject BallObject { get; }
     public Rigidbody Rigidbody { get; }
+    public MeshRenderer MeshRenderer { get; }
+    public Collider Collider { get; }
+    public Timer Timer { get; }
 }
