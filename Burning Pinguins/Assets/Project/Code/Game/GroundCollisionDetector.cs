@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GroundCollisionDetector : MonoBehaviour
 {
-    private readonly float _collisionThreshold = 0.05f;
+    [SerializeField] private float _collisionThreshold = 0.025f;
     private bool _isGrounded;
     private float _rayLength;
 

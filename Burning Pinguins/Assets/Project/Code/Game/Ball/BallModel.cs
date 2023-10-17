@@ -4,6 +4,6 @@ public static class BallModel
     {
         var parentTransform = ball.StartingPoint;
         ball.BallPosition = parentTransform.position;
-        ball.Rigidbody.Sleep();
+        ball.IsThrown = false;
     }
 }

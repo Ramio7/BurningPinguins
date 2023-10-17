@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Unity.Jobs;
 using UnityEngine;
 
 public class Timer : IDisposable
@@ -26,11 +27,12 @@ public class Timer : IDisposable
         SetCancellationToken();
     }
 
-    public virtual async void Start()
+    public async void Start()
     {
-        _timerTarget = Time.time + _timerDuration;
+        _timerTarget = (float)(Time.timeAsDouble + _timerDuration);
         _countdown = CountdownAsync();
         await Task.Run(() => _countdown, _cancellationToken);
+
         if (_countdown.IsCompletedSuccessfully) _timerCallback?.Invoke();
     }
 
@@ -52,5 +54,5 @@ public class Timer : IDisposable
     {
         _cancellationTokenSource = new();
         _cancellationToken = _cancellationTokenSource.Token;
-    }
+    }       
 }

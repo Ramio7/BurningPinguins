@@ -3,7 +3,7 @@ using UnityEngine;
 public interface IPlayerView
 {
     public IPlayerCharacter Characteristics { get; }
-    public IBallView Ball { get; set; }
+    public IBallView Ball { get; }
     public bool IsWithBall { get; set; }
     public Rigidbody Rigidbody { get; }
     public Collider Collider { get; }

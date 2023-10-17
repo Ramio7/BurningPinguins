@@ -20,22 +20,11 @@ public class MainMenuEntryPoint : MonoBehaviour, IEntryPoint
     {
         Instance = this;
         InitMenu();
-        LoadPlayerPrefab();
     }
 
     private void InitMenu()
     {
         Instantiate(_uiPrefab);
         MainMenuPresenter.Canvas.enabled = true;
-    }
-
-    private void LoadPlayerPrefab()
-    {
-        if (PlayFabService.Instance.PlayerPrefab = null)
-        {
-            PlayFabService.Instance.PlayerPrefab = Resources.Load<PlayerView>("PlayerPrefab");
-            JsonData<PlayerAccountData> accountData = new();
-            accountData.Save(PlayFabService.Instance.LoggedAccountData, PlayFabService.AccountDataPath);
-        }
     }
 }

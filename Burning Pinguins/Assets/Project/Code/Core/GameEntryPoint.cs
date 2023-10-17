@@ -31,6 +31,9 @@ public class GameEntryPoint : MonoBehaviourPunCallbacks, IEntryPoint
     private void InstantiatePlayerObjects()
     {
         Instantiate(_playerOverviewPrefab, _uiContainer);
-        GameController.SpawnPlayer(PlayFabService.Instance.PlayerPrefab);
+        var playerAccountDataFromJson = new JsonData<PlayerAccountData>();
+        var playerAccountData = playerAccountDataFromJson.Load(PlayFabService.AccountDataPath);
+        GameController.SpawnPlayer(playerAccountData.PlayerPrefab);
+        playerAccountData.Dispose();
     }
 }

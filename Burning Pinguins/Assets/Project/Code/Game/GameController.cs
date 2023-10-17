@@ -1,33 +1,57 @@
 using Photon.Pun;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private float _reviveTimerDuration;
 
-    public static GameController Instance;
     private static ReviveTimer ReviveTimer;
     private static List<PlayerView> Players = new();
 
     private void OnEnable()
     {
-        Instance = this;
         ReviveTimer = new(_reviveTimerDuration, RevivePlayer);
+        StartTheGame();
     }
 
     private void OnDisable()
     {
-        Instance = null;
+        ReviveTimer = null;
+        Players.Clear();
     }
 
-    public static void SpawnPlayer(PlayerView playerPrefab)
+    private async void StartTheGame()
     {
-        GameObject newPlayer = InstantiatePlayerObject(playerPrefab);
+        await Task.Run(() => WaitAllPlayersToSpawnAsync());
+        GiveTheBallToRandomPlayer();
+    }
+
+    private Task WaitAllPlayersToSpawnAsync()
+    {
+        while (Players.Count < PhotonNetwork.CurrentRoom.PlayerCount) return Task.Delay(1000);
+        return Task.FromResult(0);
+    }
+
+    private void GiveTheBallToRandomPlayer()
+    {
+        if (Players.Count == 1)
+        {
+            PlayerModel.GiveBall(Players[0]);
+            return;
+        }
+        var playerIndex = Random.Range(0, Players.Count);
+        PlayerModel.GiveBall(Players[playerIndex]);
+    }
+
+    public static void SpawnPlayer(GameObject playerPrefab)
+    {
+        var newPlayer = InstantiatePlayerObject(playerPrefab);
         InitPlayer(newPlayer);
     }
 
-    private static GameObject InstantiatePlayerObject(PlayerView playerPrefab)
+    private static GameObject InstantiatePlayerObject(GameObject playerPrefab)
     {
         var spawnPoint = LevelPresenter.Instance.GetEmptySpawnPoint();
         var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);

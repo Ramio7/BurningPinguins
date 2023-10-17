@@ -29,6 +29,7 @@ public class UserKeyboardInput : UserInput
         if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall)) return; 
         
         PlayerView.Ball.Rigidbody.AddForce(PlayerView.Characteristics.BallThrowForce * Time.deltaTime * PlayerView.transform.forward, ForceMode.Impulse);
+        PlayerView.Ball.IsThrown = true;
     }
 
     protected override void Rotate()

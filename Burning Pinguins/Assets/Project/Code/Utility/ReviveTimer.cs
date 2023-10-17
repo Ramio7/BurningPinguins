@@ -15,7 +15,7 @@ public class ReviveTimer : Timer
 
     public async void Start(IPlayerView playerToRevive)
     {
-        _timerTarget = Time.time + _timerDuration;
+        _timerTarget = (float)(Time.timeAsDouble + _timerDuration);
         _countdown = CountdownAsync();
         await Task.Run(() => _countdown, _cancellationToken);
         _revivePLayerCallback?.Invoke(playerToRevive);

@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using UnityEngine;
 
 public class BallView : MonoBehaviour, IBallView, IPunObservable
@@ -18,11 +19,26 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
     public bool IsThrown { get; set; }
     public Vector3 BallPosition { get => gameObject.transform.position; set => gameObject.transform.position = value; }
 
-    private void Awake() => SetTimer();
+    private void Awake()
+    {
+        SetTimer();
+        GameEntryPoint.Instance.OnUpdateEvent += MoveWithPlayer;
+    }
+
+    private void OnDestroy()
+    {
+        _timer.Dispose();
+        GameEntryPoint.Instance.OnUpdateEvent -= MoveWithPlayer;
+    }
 
     private void SetTimer()
     {
         _timer = new(_timerDuration, MyPlayer.ShutDownPlayer);
+    }
+
+    private void MoveWithPlayer()
+    {
+        if (!IsThrown) transform.position = StartingPoint.position;
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

@@ -2,6 +2,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayFabService : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayFabService : MonoBehaviour
 
     public string Username { get => _loggedAccountData.AccountName; private set => _loggedAccountData.AccountName = value; }
     public string Password { get => _loggedAccountData.AccountPassword; private set => _loggedAccountData.AccountPassword = value; }
-    public PlayerView PlayerPrefab { get => _loggedAccountData.PlayerPrefab; set => _loggedAccountData.PlayerPrefab = value; }
+    public GameObject PlayerPrefab { get => _loggedAccountData.PlayerPrefab; set => _loggedAccountData.PlayerPrefab = value; }
     public PlayerAccountData LoggedAccountData { get => _loggedAccountData; private set => _loggedAccountData = value; }
     public string AccountCreationMessage { get; private set; }
     public string AccountLoginMessage { get; private set; }
@@ -34,29 +35,48 @@ public class PlayFabService : MonoBehaviour
         Instance = null;
     }
 
+    private void OnApplicationQuit()
+    {
+        _loggedAccountData.Dispose();
+    }
+
     private void CheckPreviousLogin()
     {
         CreateAccountFilePath();
-        CheckLoginFileExistance();
-        LoadAccountData();
-        if (_loggedAccountData.AccountName != null) ConnectViaPlayFab(Username, Password);
+        if (CheckLoginFileExistance())
+            if (LoadAccountData())
+                ConnectViaPlayFab(Username, Password);
+            else return;
+        else CreateLoginFile();
+
+        if (_loggedAccountData.PlayerPrefab == null) LoadStandardPrefab();
+        else return;
     }
 
     private void CreateAccountFilePath()
     {
-        AccountDataPath = Path.Combine(Application.dataPath + "/Project/Resources/PlayerData.json");
+        AccountDataPath = Application.dataPath + "/Project/Resources/PlayerData.json";
     }
 
-    private void CheckLoginFileExistance()
+    private bool CheckLoginFileExistance() => File.Exists(AccountDataPath);
+
+    private void CreateLoginFile()
     {
-        var accountDataFile = File.Open(AccountDataPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        var accountDataFile = File.Create(AccountDataPath);
         accountDataFile.Close();
     }
 
-    private void LoadAccountData()
+    private bool LoadAccountData()
     {
         JsonData<PlayerAccountData> accountData = new();
         _loggedAccountData = accountData.Load(AccountDataPath);
+        return _loggedAccountData.AccountName != null;
+    }
+
+    private void LoadStandardPrefab()
+    {
+        string standardPrefabPath = Application.dataPath + "/Project/Code/Networking/Resources/PlayerPrefab.prefab";
+        _loggedAccountData.PlayerPrefab = PrefabUtility.LoadPrefabContents(standardPrefabPath);
     }
 
     public void CreatePlayFabAccount(string username, string email, string password)
