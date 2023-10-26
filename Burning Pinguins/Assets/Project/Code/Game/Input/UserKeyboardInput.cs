@@ -21,15 +21,19 @@ public class UserKeyboardInput : UserInput
 
     protected override void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) PlayerView.Rigidbody.AddForce(PlayerView.Characteristics.PLayerJumpForce * PlayerView.transform.up, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var playerJumpForce = PlayerView.Characteristics.PLayerJumpHeight * PlayerView.Rigidbody.mass * Physics.gravity.y;
+            PlayerView.Rigidbody.AddForce(playerJumpForce * PlayerView.transform.up, ForceMode.Impulse);
+        }
     }
 
     protected override void Throw()
     {
-        if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall)) return; 
-        
-        PlayerView.Ball.Rigidbody.AddForce(PlayerView.Characteristics.BallThrowForce * Time.deltaTime * PlayerView.transform.forward, ForceMode.Impulse);
-        PlayerView.Ball.IsThrown = true;
+        if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall && !PlayerView.Ball.IsThrown)) return;
+
+        if (PlayerView.Ball.IsThrown) 
+            BallModel.MoveBall(PlayerView.Ball, PlayerView.Ball.BallPosition.forward);
     }
 
     protected override void Rotate()

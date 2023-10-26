@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: PlayerGameStats
   m_EditorClassIdentifier: 
   _playerBaseSpeed: 10
-  _playerJumpForce: 7000
-  _ballThrowForce: 710
+  _playerJumpHeight: 1
   _sprintModifier: 2.5

@@ -1,5 +1,4 @@
 using Photon.Pun;
-using System;
 using UnityEngine;
 
 public class BallView : MonoBehaviour, IBallView, IPunObservable
@@ -7,17 +6,18 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
     [SerializeField] private Transform _startingPoint;
     [SerializeField] private PlayerPresenter _myPlayer;
     [SerializeField] private float _timerDuration;
+    [SerializeField] private float _ballSpeed;
 
     private Timer _timer;
 
-    public Rigidbody Rigidbody { get => gameObject.GetComponent<Rigidbody>(); }
     public MeshRenderer MeshRenderer { get => gameObject.GetComponent<MeshRenderer>(); }
     public Collider Collider { get => gameObject.GetComponent<Collider>(); }
     public Timer Timer { get => _timer; }
     public Transform StartingPoint { get => _startingPoint; }
     public PlayerPresenter MyPlayer { get => _myPlayer; }
     public bool IsThrown { get; set; }
-    public Vector3 BallPosition { get => gameObject.transform.position; set => gameObject.transform.position = value; }
+    public Transform BallPosition { get => gameObject.transform; }
+    public float BallSpeed { get => _ballSpeed; set => _ballSpeed = value; }
 
     private void Awake()
     {
