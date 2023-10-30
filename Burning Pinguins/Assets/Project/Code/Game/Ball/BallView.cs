@@ -16,19 +16,19 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
     public Transform StartingPoint { get => _startingPoint; }
     public PlayerPresenter MyPlayer { get => _myPlayer; }
     public bool IsThrown { get; set; }
-    public Transform BallPosition { get => gameObject.transform; }
+    public GameObject This { get => gameObject; }
     public float BallSpeed { get => _ballSpeed; set => _ballSpeed = value; }
 
-    private void Awake()
+    private void OnEnable()
     {
         SetTimer();
-        GameEntryPoint.Instance.OnUpdateEvent += MoveWithPlayer;
+        GameEntryPoint.Instance.OnUpdateEvent += MoveBall;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _timer.Dispose();
-        GameEntryPoint.Instance.OnUpdateEvent -= MoveWithPlayer;
+        GameEntryPoint.Instance.OnUpdateEvent -= MoveBall;
     }
 
     private void SetTimer()
@@ -36,9 +36,10 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
         _timer = new(_timerDuration, MyPlayer.ShutDownPlayer);
     }
 
-    private void MoveWithPlayer()
+    private void MoveBall()
     {
         if (!IsThrown) transform.position = StartingPoint.position;
+        else BallModel.MoveBall(this, transform.forward);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

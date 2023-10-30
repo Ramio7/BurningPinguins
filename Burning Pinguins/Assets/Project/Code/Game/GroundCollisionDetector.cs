@@ -3,14 +3,14 @@ using UnityEngine;
 public class GroundCollisionDetector : MonoBehaviour
 {
     [SerializeField] private float _collisionThreshold = 0.025f;
-    private bool _isGrounded;
+    [SerializeField] private bool _isGrounded;
     private float _rayLength;
 
     public bool IsGrounded { get => _isGrounded; }
 
     private void OnEnable()
     {
-        _rayLength = _collisionThreshold + transform.position.y + GetComponent<Collider>().bounds.min.y;
+        _rayLength = _collisionThreshold + /*transform.position.y*/ + GetComponent<Collider>().bounds.min.y;
         GameEntryPoint.Instance.OnUpdateEvent += CheckIsOnGround;
     }
 

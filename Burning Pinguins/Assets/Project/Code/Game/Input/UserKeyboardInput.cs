@@ -23,7 +23,7 @@ public class UserKeyboardInput : UserInput
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var playerJumpForce = PlayerView.Characteristics.PLayerJumpHeight * PlayerView.Rigidbody.mass * Physics.gravity.y;
+            var playerJumpForce = PlayerView.Characteristics.PLayerJumpHeight * PlayerView.Rigidbody.mass * -Physics.gravity.y;
             PlayerView.Rigidbody.AddForce(playerJumpForce * PlayerView.transform.up, ForceMode.Impulse);
         }
     }
@@ -32,8 +32,7 @@ public class UserKeyboardInput : UserInput
     {
         if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall && !PlayerView.Ball.IsThrown)) return;
 
-        if (PlayerView.Ball.IsThrown) 
-            BallModel.MoveBall(PlayerView.Ball, PlayerView.Ball.BallPosition.forward);
+        PlayerView.Ball.IsThrown = true;
     }
 
     protected override void Rotate()

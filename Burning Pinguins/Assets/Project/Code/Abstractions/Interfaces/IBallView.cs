@@ -8,6 +8,6 @@ public interface IBallView
     public Transform StartingPoint { get; }
     public PlayerPresenter MyPlayer { get; }
     public bool IsThrown { get; set; }
-    public Transform BallPosition { get; }
+    public GameObject This { get; }
     public float BallSpeed { get; set; }
 }
