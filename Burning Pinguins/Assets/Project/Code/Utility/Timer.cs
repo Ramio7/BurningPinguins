@@ -1,10 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.Jobs;
 using UnityEngine;
 
-public class Timer : IDisposable
+public class Timer : ITimer, IDisposable
 {
     protected float _timerDuration;
     protected Task _countdown;
@@ -27,16 +26,38 @@ public class Timer : IDisposable
         SetCancellationToken();
     }
 
-    public async void Start()
+    public void Start()
     {
-        _timerTarget = (float)(Time.timeAsDouble + _timerDuration);
+        _timerTarget = Time.time + _timerDuration;
+        GameEntryPoint.Instance.OnFixedUpdateEvent += Countdown;
+    }
+
+    public void Stop()
+    {
+        _timerTarget = 0;
+        GameEntryPoint.Instance.OnFixedUpdateEvent -= Countdown;
+    }
+
+    protected void Countdown()
+    {
+        if (_timerTarget >= Time.time) return;
+        else
+        {
+            _timerCallback?.Invoke();
+            Stop();
+        }
+    }
+
+    public async void StartAsync()
+    {
+        _timerTarget = Time.time + _timerDuration;
         _countdown = CountdownAsync();
         await Task.Run(() => _countdown, _cancellationToken);
 
         if (_countdown.IsCompletedSuccessfully) _timerCallback?.Invoke();
     }
 
-    public void Stop() => _cancellationTokenSource.Cancel();
+    public void StopAsync() => _cancellationTokenSource.Cancel();
 
     public void Dispose()
     {

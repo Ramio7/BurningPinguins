@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingPoint: {fileID: 0}
   _myPlayer: {fileID: 0}
-  _timerDuration: 30000
+  _timerDuration: 30
   _ballSpeed: 5
 --- !u!114 &1931578621013487341
 MonoBehaviour:

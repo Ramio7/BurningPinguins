@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private float _reviveTimerDuration;
+    [SerializeField, Tooltip("ReviveTimer timer duration in seconds")] private float _reviveTimerDuration;
 
     private static ReviveTimer ReviveTimer;
     private static List<PlayerView> Players = new();
@@ -97,6 +97,7 @@ public class GameController : MonoBehaviour
     {
         MovePlayerToNewSpawnPoint(playerToRevive);
         ReinitPlayer(playerToRevive);
+        GiveTheBallToRandomPlayer();
     }
 
     private static void MovePlayerToNewSpawnPoint(IPlayerView playerToRevive)

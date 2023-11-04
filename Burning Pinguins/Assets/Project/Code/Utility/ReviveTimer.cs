@@ -5,6 +5,7 @@ using UnityEngine;
 public class ReviveTimer : Timer
 {
     private Action<IPlayerView> _revivePLayerCallback;
+    private IPlayerView _playerToRevive;
 
     public ReviveTimer(float timerDuration, Action<IPlayerView> reviveTimerCallback) : base(timerDuration)
     {
@@ -13,9 +14,33 @@ public class ReviveTimer : Timer
         SetCancellationToken();
     }
 
-    public async void Start(IPlayerView playerToRevive)
+    public void Start(IPlayerView playerToRevive)
     {
-        _timerTarget = (float)(Time.timeAsDouble + _timerDuration);
+        _timerTarget = Time.time + _timerDuration;
+        _playerToRevive = playerToRevive;
+        GameEntryPoint.Instance.OnFixedUpdateEvent += Countdown;
+    }
+
+    public new void Stop()
+    {
+        _playerToRevive = null;
+        _timerTarget = 0;
+        GameEntryPoint.Instance.OnFixedUpdateEvent -= Countdown;
+    }
+
+    public new void Countdown()
+    {
+        if (_timerTarget >= Time.time) return;
+        else
+        {
+            _revivePLayerCallback?.Invoke(_playerToRevive);
+            Stop();
+        }
+    }
+
+    public async void StartAsync(IPlayerView playerToRevive)
+    {
+        _timerTarget = Time.time + _timerDuration;
         _countdown = CountdownAsync();
         await Task.Run(() => _countdown, _cancellationToken);
         _revivePLayerCallback?.Invoke(playerToRevive);

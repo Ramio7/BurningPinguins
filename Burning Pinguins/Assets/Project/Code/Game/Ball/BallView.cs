@@ -5,7 +5,7 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
 {
     [SerializeField] private Transform _startingPoint;
     [SerializeField] private PlayerPresenter _myPlayer;
-    [SerializeField] private float _timerDuration;
+    [SerializeField, Tooltip("Timer duration in seconds")] private float _timerDuration;
     [SerializeField] private float _ballSpeed;
 
     private Timer _timer;
@@ -19,16 +19,24 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
     public GameObject This { get => gameObject; }
     public float BallSpeed { get => _ballSpeed; set => _ballSpeed = value; }
 
-    private void OnEnable()
+    private void Awake()
     {
         SetTimer();
+    }
+
+    private void OnEnable()
+    {
         GameEntryPoint.Instance.OnUpdateEvent += MoveBall;
     }
 
     private void OnDisable()
     {
-        _timer.Dispose();
         GameEntryPoint.Instance.OnUpdateEvent -= MoveBall;
+    }
+
+    private void OnDestroy()
+    {
+        _timer.Dispose();
     }
 
     private void SetTimer()
