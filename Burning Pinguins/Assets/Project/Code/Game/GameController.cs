@@ -6,6 +6,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField, Tooltip("ReviveTimer timer duration in seconds")] private float _reviveTimerDuration;
+    [SerializeField] private GameObject _ballPrefab;
+
+    private IBallView _ball;
 
     private static ReviveTimer ReviveTimer;
     private static List<PlayerView> Players = new();
@@ -25,7 +28,14 @@ public class GameController : MonoBehaviour
     private async void StartTheGame()
     {
         await Task.Run(() => WaitAllPlayersToSpawnAsync());
+        SpawnTheBall();
         GiveTheBallToRandomPlayer();
+    }
+
+    private void SpawnTheBall()
+    {
+        PhotonNetwork.InstantiateRoomObject(_ballPrefab.name, Vector3.positiveInfinity, Quaternion.identity).TryGetComponent(out IBallView ball);
+        _ball = ball;
     }
 
     private Task WaitAllPlayersToSpawnAsync()
@@ -38,11 +48,11 @@ public class GameController : MonoBehaviour
     {
         if (Players.Count == 1)
         {
-            PlayerModel.GiveBall(Players[0]);
+            PlayerModel.GiveBall(_ball, Players[0].GetComponent<PlayerPresenter>());
             return;
         }
         var playerIndex = Random.Range(0, Players.Count);
-        PlayerModel.GiveBall(Players[playerIndex]);
+        PlayerModel.GiveBall(_ball, Players[playerIndex].GetComponent<PlayerPresenter>());
     }
 
     public static void SpawnPlayer(GameObject playerPrefab)

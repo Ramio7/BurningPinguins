@@ -18,12 +18,12 @@ public class PlayerPresenter : MonoBehaviour
     {
         if (PlayerView.IsWithBall && collision.gameObject.TryGetComponent<PlayerPresenter>(out var player))
         {
-            PlayerModel.GiveBall(player.PlayerView);
+            PlayerModel.GiveBall(PlayerView.Ball, player);
         }
 
         if (collision.gameObject.TryGetComponent<IBallView>(out var ball))
         {
-            PlayerModel.CatchBall(ball);
+            PlayerModel.CatchBall(ball, this);
         }
     }
 

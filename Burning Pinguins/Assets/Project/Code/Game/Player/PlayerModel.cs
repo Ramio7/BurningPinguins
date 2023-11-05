@@ -1,26 +1,29 @@
 public static class PlayerModel
 {
-    public static void CatchBall(IBallView otherPlayerBall)
+    public static void CatchBall(IBallView ball, PlayerPresenter me) //продумай как теперь передавать мяч
     {
-        var otherPlayer = otherPlayerBall.MyPlayer;
+        var otherPlayer = ball.MyPlayer;
         otherPlayer.PlayerView.IsWithBall = false;
-        SetBallActive(otherPlayerBall, false);
+
+        SetBallActive(ball);
     }
 
-    public static void GiveBall(IPlayerView otherPlayer)
+    public static void GiveBall(IBallView ball, PlayerPresenter otherPlayer)
     {
-        otherPlayer.IsWithBall = true;
+        otherPlayer.PlayerView.IsWithBall = true;
+        otherPlayer.PlayerView.Ball = ball;
+        ball.StartingPoint = otherPlayer.PlayerView.BallStartingPosition;
+        ball.MyPlayer = otherPlayer;
 
-        var otherBall = otherPlayer.Ball;
-        SetBallActive(otherBall, true);
+        SetBallActive(ball);
     }
 
-    private static void SetBallActive(IBallView otherPlayerBall, bool isActive)
+    private static void SetBallActive(IBallView ball)
     {
-        otherPlayerBall.MeshRenderer.enabled = isActive;
-        otherPlayerBall.Collider.enabled = isActive;
+        ball.IsThrown = false;
 
-        if (isActive) otherPlayerBall.Timer.Start();
-        else otherPlayerBall.Timer.Stop();
+        ball.Timer.Stop();
+        ball.SetTimer();
+        ball.Timer.Start();
     }
 }
