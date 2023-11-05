@@ -4,10 +4,7 @@ public static class PlayerModel
     {
         var otherPlayer = otherPlayerBall.MyPlayer;
         otherPlayer.PlayerView.IsWithBall = false;
-
-        otherPlayerBall.MeshRenderer.enabled = false;
-        otherPlayerBall.Collider.enabled = false;
-        otherPlayerBall.Timer.Stop();
+        SetBallActive(otherPlayerBall, false);
     }
 
     public static void GiveBall(IPlayerView otherPlayer)
@@ -15,8 +12,15 @@ public static class PlayerModel
         otherPlayer.IsWithBall = true;
 
         var otherBall = otherPlayer.Ball;
-        otherBall.MeshRenderer.enabled = true;
-        otherBall.Collider.enabled = true;
-        otherBall.Timer.Start();
+        SetBallActive(otherBall, true);
+    }
+
+    private static void SetBallActive(IBallView otherPlayerBall, bool isActive)
+    {
+        otherPlayerBall.MeshRenderer.enabled = isActive;
+        otherPlayerBall.Collider.enabled = isActive;
+
+        if (isActive) otherPlayerBall.Timer.Start();
+        else otherPlayerBall.Timer.Stop();
     }
 }

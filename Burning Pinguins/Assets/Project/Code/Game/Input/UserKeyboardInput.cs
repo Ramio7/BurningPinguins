@@ -30,7 +30,9 @@ public class UserKeyboardInput : UserInput
 
     protected override void Throw()
     {
-        if (!(Input.GetKeyDown(KeyCode.Mouse0) && PlayerView.IsWithBall && !PlayerView.Ball.IsThrown)) return;
+        if (!Input.GetKeyDown(KeyCode.Mouse0)) return;
+
+        if (!(PlayerView.IsWithBall && !PlayerView.Ball.IsThrown)) return;
 
         PlayerView.Ball.IsThrown = true;
     }

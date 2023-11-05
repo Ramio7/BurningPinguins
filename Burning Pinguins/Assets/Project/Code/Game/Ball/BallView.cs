@@ -26,12 +26,12 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
 
     private void OnEnable()
     {
-        GameEntryPoint.Instance.OnUpdateEvent += MoveBall;
+        GameEntryPoint.Instance.OnFixedUpdateEvent += MoveBall;
     }
 
     private void OnDisable()
     {
-        GameEntryPoint.Instance.OnUpdateEvent -= MoveBall;
+        GameEntryPoint.Instance.OnFixedUpdateEvent -= MoveBall;
     }
 
     private void OnDestroy()

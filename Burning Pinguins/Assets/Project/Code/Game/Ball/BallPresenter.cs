@@ -14,6 +14,6 @@ public class BallPresenter : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (BallView.IsThrown && !collision.gameObject.TryGetComponent<PlayerPresenter>(out var player)) BallModel.ReturnBall(BallView);
+        BallModel.ReturnBall(BallView);
     }
 }
