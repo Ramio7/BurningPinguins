@@ -34,15 +34,22 @@ public class UserKeyboardInput : UserInput
 
         if (!(PlayerView.IsWithBall && !PlayerView.Ball.IsThrown)) return;
 
-        PlayerView.Ball.IsThrown = true;
+        var mouseHitPosition = CalculateMouseLookDirection(PlayerView.Ball.GameObject);
+        BallModel.ThrowBall(PlayerView.Ball, mouseHitPosition); //отлови баг с неверным направлением полЄта м€ча
     }
 
     protected override void Rotate()
     {
+        var mouseHitPosition = CalculateMouseLookDirection(PlayerView.GameObject);
+        PlayerView.transform.LookAt(mouseHitPosition);
+    }
+
+    private Vector3 CalculateMouseLookDirection(GameObject rotatingObject)
+    {
         var mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(mouseRay, out RaycastHit hitInfo);
         var mouseHitPosition = hitInfo.point;
-        mouseHitPosition.y = PlayerView.transform.position.y;
-        PlayerView.transform.LookAt(mouseHitPosition);
+        mouseHitPosition.y = rotatingObject.transform.position.y;
+        return mouseHitPosition;
     }
 }

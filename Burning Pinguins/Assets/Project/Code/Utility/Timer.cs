@@ -26,6 +26,12 @@ public class Timer : ITimer, IDisposable
         SetCancellationToken();
     }
 
+    public void Dispose()
+    {
+        _cancellationTokenSource.Dispose();
+        _countdown?.Dispose();
+    }
+
     public void Start()
     {
         _timerTarget = Time.time + _timerDuration;
@@ -58,12 +64,6 @@ public class Timer : ITimer, IDisposable
     }
 
     public void StopAsync() => _cancellationTokenSource.Cancel();
-
-    public void Dispose()
-    {
-        _cancellationTokenSource.Dispose();
-        _countdown?.Dispose();
-    }
 
     protected Task CountdownAsync()
     {

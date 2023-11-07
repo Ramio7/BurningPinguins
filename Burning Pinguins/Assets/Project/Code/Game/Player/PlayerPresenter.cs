@@ -23,6 +23,8 @@ public class PlayerPresenter : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<IBallView>(out var ball))
         {
+            if (PlayerView.IsWithBall) return;
+
             PlayerModel.CatchBall(ball, this);
         }
     }

@@ -2,15 +2,18 @@ using UnityEngine;
 
 public static class BallModel
 {
-    public static void MoveBall(IBallView ball, Vector3 ballDirection)
+    public static void ThrowBall(IBallView ball, Vector3 ballDirection)
     {
-        var newBallPosition = ball.This.transform.position + ball.BallSpeed * Time.deltaTime * ballDirection;
-        ball.This.transform.position = newBallPosition;
+        ball.IsThrown = true;
+        ball.Rigidbody.useGravity = true;
+        var ballVelocityVector = ballDirection * ball.BallSpeed;
+        ballVelocityVector.y = ballDirection.y;
+        ball.Rigidbody.AddForce(ballVelocityVector, ForceMode.VelocityChange);
     }
 
     public static void ReturnBall(IBallView ball)
     {
         ball.IsThrown = false;
-        ball.This.transform.position = ball.StartingPoint.position;
+        ball.Rigidbody.useGravity = false;
     }
 }

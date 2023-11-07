@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerGameCharacteristics: {fileID: 11400000, guid: 5cbb36be5a5b99b4286a4915b2fdc623, type: 2}
-  _ball: {fileID: 0}
+  _ballStartingPosition: {fileID: 81905025408889008}
 --- !u!114 &962273724329604756
 MonoBehaviour:
   m_ObjectHideFlags: 0

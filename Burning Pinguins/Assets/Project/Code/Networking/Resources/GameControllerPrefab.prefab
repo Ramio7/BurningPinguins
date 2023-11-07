@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reviveTimerDuration: 10
+  _ballPrefab: {fileID: 356780338600673575, guid: 6cf7b75ffa675a447a136f46e809cd27, type: 3}
 --- !u!114 &8861741826141750438
 MonoBehaviour:
   m_ObjectHideFlags: 0

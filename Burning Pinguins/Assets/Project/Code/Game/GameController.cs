@@ -34,7 +34,8 @@ public class GameController : MonoBehaviour
 
     private void SpawnTheBall()
     {
-        PhotonNetwork.InstantiateRoomObject(_ballPrefab.name, Vector3.positiveInfinity, Quaternion.identity).TryGetComponent(out IBallView ball);
+        var ballSpawnTransform = LevelPresenter.Instance.GetBallSpawnPoint();
+        PhotonNetwork.InstantiateRoomObject(_ballPrefab.name, ballSpawnTransform.position, ballSpawnTransform.rotation).TryGetComponent(out IBallView ball);
         _ball = ball;
     }
 
@@ -95,6 +96,7 @@ public class GameController : MonoBehaviour
     private static void DeinitPlayer(IPlayerView playerToShutDown)
     {
         playerToShutDown.GameObject.GetComponent<CameraMover>().StopCameraFollowing();
+        playerToShutDown.Ball.GameObject.GetComponent<MeshRenderer>().enabled = false;
         playerToShutDown.GameObject.SetActive(false);
     }
 

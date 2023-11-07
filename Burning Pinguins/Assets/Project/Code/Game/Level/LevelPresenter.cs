@@ -18,6 +18,8 @@ public class LevelPresenter : MonoBehaviour, IPunObservable
 
     public Transform GetEmptySpawnPoint() => _levelModel.GetEmptySpawnPointTransform(_levelView.SpawnPoints);
 
+    public Transform GetBallSpawnPoint() => _levelView.BallStartingPoint;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)

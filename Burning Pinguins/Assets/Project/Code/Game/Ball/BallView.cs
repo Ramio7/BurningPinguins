@@ -1,28 +1,24 @@
 using Photon.Pun;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class BallView : MonoBehaviour, IBallView, IPunObservable
 {
     [SerializeField] private Transform _startingPoint;
     [SerializeField] private PlayerPresenter _myPlayer;
     [SerializeField, Tooltip("Timer duration in seconds")] private float _timerDuration;
     [SerializeField] private float _ballSpeed;
+    [SerializeField] private bool _isThrown;
 
     private Timer _timer;
 
-    public MeshRenderer MeshRenderer { get => gameObject.GetComponent<MeshRenderer>(); }
-    public Collider Collider { get => gameObject.GetComponent<Collider>(); }
     public Timer Timer { get => _timer; }
     public Transform StartingPoint { get => _startingPoint; set => _startingPoint = value; }
     public PlayerPresenter MyPlayer { get => _myPlayer; set => _myPlayer = value; }
-    public bool IsThrown { get; set; }
-    public GameObject This { get => gameObject; }
+    public bool IsThrown { get => _isThrown; set => _isThrown = value; }
+    public GameObject GameObject { get => gameObject; }
     public float BallSpeed { get => _ballSpeed; set => _ballSpeed = value; }
-
-    private void Awake()
-    {
-        SetTimer();
-    }
+    public Rigidbody Rigidbody { get => gameObject.GetComponent<Rigidbody>(); }
 
     private void OnEnable()
     {
@@ -41,13 +37,13 @@ public class BallView : MonoBehaviour, IBallView, IPunObservable
 
     private void MoveBall()
     {
-        if (!IsThrown) transform.position = StartingPoint.position;
-        else BallModel.MoveBall(this, transform.forward);
+        if (!IsThrown) transform.SetPositionAndRotation(StartingPoint.position, StartingPoint.rotation);
     }
 
-    public void SetTimer()
+    public void SetTimer(PlayerPresenter playerWithBall)
     {
-        _timer = new(_timerDuration, MyPlayer.ShutDownPlayer);
+        _timer?.Dispose();
+        _timer = new(_timerDuration, playerWithBall.ShutDownPlayer);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
