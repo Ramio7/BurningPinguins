@@ -35,7 +35,8 @@ public class UserKeyboardInput : UserInput
         if (!(PlayerView.IsWithBall && !PlayerView.Ball.IsThrown)) return;
 
         var mouseHitPosition = CalculateMouseLookDirection(PlayerView.Ball.GameObject);
-        BallModel.ThrowBall(PlayerView.Ball, mouseHitPosition); //отлови баг с неверным направлением полЄта м€ча
+        var ballDirection = mouseHitPosition - PlayerView.Ball.GameObject.transform.position;
+        BallModel.ThrowBall(PlayerView.Ball, ballDirection);
     }
 
     protected override void Rotate()

@@ -8,7 +8,7 @@ public static class BallModel
         ball.Rigidbody.useGravity = true;
         var ballVelocityVector = ballDirection * ball.BallSpeed;
         ballVelocityVector.y = ballDirection.y;
-        ball.Rigidbody.AddForce(ballVelocityVector, ForceMode.VelocityChange);
+        ball.Rigidbody.AddForce(ballVelocityVector, ForceMode.VelocityChange); //придумать как ограничить скорость броска
     }
 
     public static void ReturnBall(IBallView ball)
