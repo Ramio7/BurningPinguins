@@ -2,11 +2,12 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayFabService : MonoBehaviour
 {
+    [SerializeField] private GameObject _playerStandardPrefab;
+
     private PlayerAccountData _loggedAccountData = new();
 
     public string Username { get => _loggedAccountData.AccountName; private set => _loggedAccountData.AccountName = value; }
@@ -55,7 +56,7 @@ public class PlayFabService : MonoBehaviour
 
     private void CreateAccountFilePath()
     {
-        AccountDataPath = Application.dataPath + "/Project/Resources/PlayerData.json";
+        AccountDataPath = Application.dataPath + "/Resources/PlayerData.json";
     }
 
     private bool CheckLoginFileExistance() => File.Exists(AccountDataPath);
@@ -75,8 +76,7 @@ public class PlayFabService : MonoBehaviour
 
     private void LoadStandardPrefab()
     {
-        string standardPrefabPath = Application.dataPath + "/Project/Code/Networking/Resources/PlayerPrefab.prefab";
-        _loggedAccountData.PlayerPrefab = PrefabUtility.LoadPrefabContents(standardPrefabPath);
+        _loggedAccountData.PlayerPrefab = _playerStandardPrefab;
     }
 
     public void CreatePlayFabAccount(string username, string email, string password)
@@ -113,7 +113,7 @@ public class PlayFabService : MonoBehaviour
                 Username = username;
                 Password = password;
                 AccountLoginMessage = result.ToString();
-                AccountLoginCallback.Invoke(true);
+                AccountLoginCallback?.Invoke(true);
                 WriteLoggedAccountData();
                 PhotonService.Instance.ConnectToPhotonServer();
             },
