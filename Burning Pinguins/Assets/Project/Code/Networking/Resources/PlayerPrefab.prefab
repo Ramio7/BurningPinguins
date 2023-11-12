@@ -182,9 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7c8d4c4b41ef74b9ce736df1414efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraDistance: 15
   _cameraAngle: 45
-  _cameraOffset: 15
+  _cameraOffset: 5
   _cameraSpeed: 5
   _playerPivot: {fileID: 6862777123848768820}
   _camera: {fileID: 0}

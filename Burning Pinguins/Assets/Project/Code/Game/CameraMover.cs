@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-    [SerializeField, Min(5.0f)] private float _cameraDistance;
     [SerializeField, Min(0.0f)] private float _cameraAngle;
     [SerializeField, Min(0.0f)] private float _cameraOffset;
     [SerializeField, Min(5.0f)] private float _cameraSpeed;
     [SerializeField] private Transform _playerPivot;
     [SerializeField] private Camera _camera;
     [SerializeField] private Vector3 _cameraPosition;
+
+    private float _cameraNearClippingOffset = 0.1f;
 
     private void OnEnable()
     {
@@ -17,6 +18,7 @@ public class CameraMover : MonoBehaviour
 
     public void StartCameraFollowing()
     {
+        _camera.nearClipPlane = _cameraOffset - _cameraNearClippingOffset;
         GameEntryPoint.Instance.OnUpdateEvent += Follow;
     }
 
@@ -30,7 +32,8 @@ public class CameraMover : MonoBehaviour
 
     private void CalculateCameraPosition()
     {
-        _camera.transform.position = new(_playerPivot.position.x, _cameraOffset, _playerPivot.position.z - _cameraDistance);
+        var cameraPositionZCoord = _playerPivot.position.z - _cameraOffset * Mathf.Tan(_cameraAngle * Mathf.PI / 180);
+        _camera.transform.position = new(_playerPivot.position.x, _cameraOffset, cameraPositionZCoord);
     }
 
     private void CalculateCameraRotation()
