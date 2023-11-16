@@ -38,7 +38,17 @@ public class JoinFriendWindowPresenter : MonoBehaviour, IUiWindow
         _backButton.onClick.RemoveListener(SwitchToLobbyWindow);
     }
 
-    private void JoinFriend() => PhotonNetwork.JoinRoom(_roomnameInputField.text);
+    private void JoinFriend()
+    {
+        PhotonNetwork.JoinRoom(_roomnameInputField.text);
+        SwitchToStatusButton(true);
+    }
+
+    private void SwitchToStatusButton(bool isSwitched)
+    {
+        _joinFriendButton.gameObject.SetActive(!isSwitched);
+        _joinFriendStatusButton.gameObject.SetActive(isSwitched);
+    }
 
     private void SwitchToRoomWindow()
     {
