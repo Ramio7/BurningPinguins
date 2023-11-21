@@ -26,7 +26,7 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
 
     public override void OnJoinedLobby()
     {
-        PhotonService.Instance.GetRoomList();
+        //PhotonService.Instance.GetRoomList();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList) => UpdateRoomListUI(roomList);

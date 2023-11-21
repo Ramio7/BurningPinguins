@@ -15,8 +15,8 @@ public class PhotonService : MonoBehaviourPunCallbacks
 
     public static PhotonService Instance { get; private set; }
 
-    public event Action ConnectedToServer;
-    public event Action ConnectedToLobby;
+    public event Action OnConnectedToServer;
+    public event Action OnConnectedToLobby;
 
     private void Awake()
     {
@@ -43,21 +43,16 @@ public class PhotonService : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = accountData.AccountName;
         PhotonNetwork.ConnectUsingSettings();
         await Task.Run(() => WaitServerJoinAsync());
-        ConnectedToServer?.Invoke();
+        OnConnectedToServer?.Invoke();
     }
 
     public async void ConnectLobby()
     {
-        PhotonNetwork.JoinLobby(_lobby);
+        //PhotonNetwork.JoinLobby(_lobby);
+        PhotonNetwork.JoinLobby();
         await Task.Run(() => WaitLobbyJoinAsync());
-        GetRoomList();
-        ConnectedToLobby?.Invoke();
-    }
-
-    public void JoinGame()
-    {
-        PhotonNetwork.JoinRandomOrCreateRoom();
-        PhotonNetwork.LoadLevel(SceneList.SimpleGameMap.ToString());
+        //GetRoomList();
+        OnConnectedToLobby?.Invoke();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
