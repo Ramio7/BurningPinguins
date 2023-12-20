@@ -7,11 +7,11 @@ using UnityEngine;
 public class PhotonService : MonoBehaviourPunCallbacks
 {
     public string AppVersion; 
-    private TypedLobby _lobby = new("mainLobby", LobbyType.SqlLobby);
-    private const string MAP_KEY = "C0";
-    private const string RATING_KEY = "C1";
+    //private TypedLobby _lobby = new("mainLobby", LobbyType.SqlLobby);
+    //private const string MAP_KEY = "C0";
+    //private const string RATING_KEY = "C1";
 
-    public TypedLobby CurrentLobby { get => _lobby; private set => _lobby = value; }
+    //public TypedLobby CurrentLobby { get => _lobby; private set => _lobby = value; }
 
     public static PhotonService Instance { get; private set; }
 
@@ -72,9 +72,9 @@ public class PhotonService : MonoBehaviourPunCallbacks
         return Task.CompletedTask;
     }
 
-    public void GetRoomList()
-    {
-        var roomFilter = $"{MAP_KEY} >= 0 AND {RATING_KEY} >= 0";
-        PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
-    }
+    //public void GetRoomList()
+    //{
+    //    var roomFilter = $"{MAP_KEY} >= 0 AND {RATING_KEY} >= 0";
+    //    PhotonNetwork.GetCustomRoomList(_lobby, roomFilter);
+    //}
 }

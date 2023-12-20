@@ -20,6 +20,7 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
 
     public override void OnDisable()
     {
+        PhotonNetwork.RemoveCallbackTarget(this);
         ClearRoomListUi();
         _rooms.Clear();
     }
@@ -29,9 +30,7 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
         //PhotonService.Instance.GetRoomList();
     }
 
-    public override void OnRoomListUpdate(List<RoomInfo> roomList) => UpdateRoomListUI(roomList);
-
-    private void UpdateRoomListUI(List<RoomInfo> roomList)
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         ClearRoomListUi();
 
@@ -55,6 +54,7 @@ public class RoomListPresenter : MonoBehaviourPunCallbacks, IUiList
         foreach (var roomInfo in _rooms)
         {
             Destroy(roomInfo.gameObject);
+            _rooms.Remove(roomInfo);
         }
     }
 }
